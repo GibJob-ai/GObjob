@@ -1,4 +1,4 @@
-module github.com/GibJob-ai/GObjob
+module gibjob.engineer
 
 go 1.16
 
