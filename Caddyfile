@@ -1,5 +1,0 @@
-localhost
-
-route /* {
-  reverse_proxy localhost:3000
-}
