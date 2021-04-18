@@ -3,16 +3,18 @@ package main
 import (
 	"net/http"
 
-	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
+	"github.com/mandrigin/gin-spa/spa"
 )
 
 func main() {
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
 
+	router.Use(spa.Middleware("/", "./frontend/public"))
+
 	// Serve frontend static files
-	router.Use(static.Serve("/", static.LocalFile("./frontend/public", true)))
+	//router.Use(static.Serve("/", static.LocalFile("./frontend/public", true)))
 
 	// Setup route group for the API
 	api := router.Group("/api")
