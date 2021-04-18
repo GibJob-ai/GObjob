@@ -4,6 +4,8 @@ const path = require('path');
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
 
+// const { preprocess } = require('./svelte.config');
+
 module.exports = {
 	entry: {
 		'build/bundle': ['./src/main.js']
@@ -32,6 +34,7 @@ module.exports = {
 						},
 						emitCss: prod,
 						hotReload: !prod
+            // preprocess
 					}
 				}
 			},
