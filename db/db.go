@@ -1,12 +1,12 @@
 package db
 
 import (
-	"os"
+	// "os"
 	"github.com/jinzhu/gorm"
-  "fmt"
+  // "fmt"
 
 	// gorm postgres dialect
-  "github.com/jinzhu/gorm/dialects/postgres"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 // DB *grom.DB

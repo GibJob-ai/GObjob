@@ -8,14 +8,14 @@ import (
 	"github.com/mandrigin/gin-spa/spa"
 
 	graphql "github.com/graph-gophers/graphql-go"
-	"github.com/GibJob-ai/GObjob/utils"
+	// "github.com/GibJob-ai/GObjob/utils"
 	"github.com/GibJob-ai/GObjob/db"
 	"github.com/GibJob-ai/GObjob/schema"
+	"github.com/GibJob-ai/GObjob/resolvers"
+	"github.com/GibJob-ai/GObjob/handler"
 )
 
 func main() {
-	util.LoadEnv()
-
 	db, err := db.ConnectDB()
 	if err != nil {
 		panic(err)

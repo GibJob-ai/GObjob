@@ -6,7 +6,7 @@ import (
 
 	"github.com/jinzhu/gorm"
 	// gorm postgres dialect
-	"github.com/jinzhu/gorm/dialects/postgres"
+	// "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 // Model : gorm.Model definition
