@@ -48,3 +48,8 @@ This is the place where the graphql schema lives.
 ### `utils/`
 
 This is the place where utility functions live. We currently use this just for JWT stuff.
+
+### `handler/`
+
+This is the place for route handlers.
+
