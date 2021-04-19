@@ -6,8 +6,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/autotls"
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
-	"github.com/mandrigin/gin-spa/spa"
 
 	graphql "github.com/graph-gophers/graphql-go"
 	// "github.com/GibJob-ai/GObjob/utils"
@@ -34,14 +34,21 @@ func main() {
 	mux := http.NewServeMux()
 	mux.Handle("/graphql", handler.GraphiQL{})
 	mux.Handle("/query", handler.Authenticate(&handler.GraphQL{Schema: schema}))
+
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
 
-	// setup SPA middleware to allow route handling and sending files
-	router.Use(spa.Middleware("/", "./frontend/public"))
+	//////////////////
+	// serving single page application stuff
+	//////////////////
 
 	// Serve frontend static files
-	//router.Use(static.Serve("/", static.LocalFile("./frontend/public", true)))
+	router.Use(static.Serve("/", static.LocalFile("./frontend/public", true)))
+
+	// if no route then serve the root file
+	router.NoRoute(func(c *gin.Context) {
+		c.File("./frontend/public/index.html")
+	})
 
 	// Setup route group for the API
 	api := router.Group("/api")
