@@ -10,6 +10,7 @@ To install all frontend dependencies, run `yarn install`
 
 To build svelte to be served, run `yarn build`
 
-## Layout
+## Architecture
 
-we use [Routify](https://routify.dev/) for frontend routing so our file structure is based off of this
+This can be read at `ARCHITECTURE.md`
+
