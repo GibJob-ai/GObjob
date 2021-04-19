@@ -1,18 +1,20 @@
 package main
 
 import (
-	"net/http"
 	"context"
+	"log"
+	"net/http"
 
+	"github.com/gin-gonic/autotls"
 	"github.com/gin-gonic/gin"
 	"github.com/mandrigin/gin-spa/spa"
 
 	graphql "github.com/graph-gophers/graphql-go"
 	// "github.com/GibJob-ai/GObjob/utils"
 	"github.com/GibJob-ai/GObjob/db"
-	"github.com/GibJob-ai/GObjob/schema"
-	"github.com/GibJob-ai/GObjob/resolvers"
 	"github.com/GibJob-ai/GObjob/handler"
+	"github.com/GibJob-ai/GObjob/resolvers"
+	"github.com/GibJob-ai/GObjob/schema"
 )
 
 func main() {
@@ -30,11 +32,12 @@ func main() {
 	schema := graphql.MustParseSchema(*schema.NewSchema(), &resolvers.Resolvers{DB: db}, opts...)
 
 	mux := http.NewServeMux()
-	mux.Handle("/", handler.GraphiQL{})
+	mux.Handle("/graphql", handler.GraphiQL{})
 	mux.Handle("/query", handler.Authenticate(&handler.GraphQL{Schema: schema}))
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
 
+	// setup SPA middleware to allow route handling and sending files
 	router.Use(spa.Middleware("/", "./frontend/public"))
 
 	// Serve frontend static files
@@ -50,6 +53,10 @@ func main() {
 		})
 	}
 
-	// Start and run the server
-	router.Run(":3000")
+	// Start and run the server depending on mode
+	if gin.Mode() == gin.DebugMode {
+		log.Fatal(router.Run(":3000"))
+	} else if gin.Mode() == gin.ReleaseMode {
+		log.Fatal(autotls.Run(router, "gibjob.engineer"))
+	}
 }
