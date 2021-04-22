@@ -1,4 +1,11 @@
-# stuff
+# GObjob
+
+## Setup
+
+### Creating the config
+Inside `<MAIN>` create a copy of `config.example.hcl`
+
+Then change the variables to whats needed
 
 ## Run
 
