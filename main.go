@@ -79,7 +79,7 @@ func main() {
 
 	// Start and run the server depending on mode
 	if gin.Mode() == gin.DebugMode {
-		log.Fatal(router.Run(":3000"))
+		log.Fatal(router.Run(":" + config.CONFIG.Port))
 	} else if gin.Mode() == gin.ReleaseMode {
 		log.Fatal(autotls.Run(router, "gibjob.engineer"))
 	}
