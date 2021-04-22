@@ -22,6 +22,10 @@ run `go run main.go`
 To run for prod, set `Mode="prod"` inside `config.hcl`
 then run `sudo go run main.go`
 
+## Graphql 
+
+On dev mode you can GET at `/graphql` to get graphql playground
+
 ## Architecture
 
 This can be read at `ARCHITECTURE.md`
