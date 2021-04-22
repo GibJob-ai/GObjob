@@ -4,7 +4,6 @@
 If you want to familiarize yourself with the code base and *generally* how it works, this is a good place to be.
 
 ## High Level TLDR
-
 All the main code is loaded into main.go and ran from there.
 
 ## Code Map
@@ -20,6 +19,14 @@ All the main code is loaded into main.go and ran from there.
 ### `main.go`
 
 The main server file. All the code is loaded and run from here.
+
+### `config.example.hcl`
+
+The example config that should be copied and name changed to `config.hcl`
+
+### `config.hcl`
+
+The config file to configure the server settings
 
 ### `<folder name>/<folder name>.go`
 
@@ -53,3 +60,6 @@ This is the place where utility functions live. We currently use this just for J
 
 This is the place for route handlers.
 
+### `config/`
+
+This is the place that reads the config
