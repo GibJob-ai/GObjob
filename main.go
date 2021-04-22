@@ -11,6 +11,7 @@ import (
 
 	graphql "github.com/graph-gophers/graphql-go"
 	// "github.com/GibJob-ai/GObjob/utils"
+	"github.com/GibJob-ai/GObjob/config"
 	"github.com/GibJob-ai/GObjob/db"
 	"github.com/GibJob-ai/GObjob/handler"
 	"github.com/GibJob-ai/GObjob/resolvers"
@@ -18,6 +19,22 @@ import (
 )
 
 func main() {
+
+	// load the config
+	config.Load()
+
+	// if the config is dev mode set server to dev mode
+	// same with other modes
+	if config.CONFIG.Mode == "dev" {
+		gin.SetMode(gin.DebugMode)
+	} else if config.CONFIG.Mode == "prod" {
+		gin.SetMode(gin.ReleaseMode)
+	} else if config.CONFIG.Mode == "test" {
+		gin.SetMode(gin.TestMode)
+	} else {
+		log.Fatalf("Unkown server mode given in config: %s", config.CONFIG.Mode)
+	}
+
 	db, err := db.ConnectDB()
 	if err != nil {
 		panic(err)
