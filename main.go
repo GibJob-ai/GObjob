@@ -48,10 +48,6 @@ func main() {
 
 	schema := graphql.MustParseSchema(*schema.NewSchema(), &resolvers.Resolvers{DB: db}, opts...)
 
-	mux := http.NewServeMux()
-	mux.Handle("/graphql", handler.GraphiQL{})
-	mux.Handle("/query", handler.Authenticate(&handler.GraphQL{Schema: schema}))
-
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
 
@@ -66,6 +62,10 @@ func main() {
 	router.NoRoute(func(c *gin.Context) {
 		c.File("./frontend/public/index.html")
 	})
+
+	// graphql routes and route handling
+	router.GET("/graphql", gin.WrapH(handler.GraphiQL{}))
+	router.POST("/graphql", gin.WrapH(handler.Authenticate(&handler.GraphQL{Schema: schema})))
 
 	// Setup route group for the API
 	api := router.Group("/api")
