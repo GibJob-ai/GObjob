@@ -1,5 +1,6 @@
 type Query {
   getMyProfile: GetMyProfileResponse!
+  test: Boolean!
 }
 type GetMyProfileResponse {
   ok: Boolean!
