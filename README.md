@@ -3,7 +3,11 @@
 ## Setup
 
 ### Creating the config
-Inside `<MAIN>` create a copy of `config.example.hcl`
+Inside `<MAIN>` create a copy of `config.example.hcl` named `config.hcl`
+
+``` sh
+$ cp config.example.hcl config.hcl
+```
 
 Then change the variables to whats needed
 
