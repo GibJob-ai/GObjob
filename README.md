@@ -1,9 +1,11 @@
 # GObjob
 
+**Assume everything <MAIN> or root directory**
+
 ## Setup
 
 ### Creating the config
-Inside `<MAIN>` create a copy of `config.example.hcl` named `config.hcl`
+Create a copy of `config.example.hcl` named `config.hcl`
 
 ``` sh
 $ cp config.example.hcl config.hcl
@@ -13,11 +15,16 @@ Then change the variables to whats needed
 
 ## Run
 
-Inside `<MAIN>` run `go run main.go`
+run `go run main.go`
 
 ### Run in prod
 
-To run for prod, inside `<MAIN>` run `sudo GIN_MODE=release go run main.go`
+To run for prod, set `Mode="prod"` inside `config.hcl`
+then run `sudo go run main.go`
+
+## Graphql 
+
+On dev mode you can GET at `/graphql` to get graphql playground
 
 ## Architecture
 

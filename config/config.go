@@ -8,6 +8,7 @@ import (
 // the base of the struct that the data goes into
 type Config struct {
 	Mode string   `hcl:"Mode"`
+	Port string   `hcl:"Port"`
 	DB   DBConfig `hcl:"DB,block"`
 }
 

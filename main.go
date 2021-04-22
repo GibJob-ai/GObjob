@@ -48,10 +48,6 @@ func main() {
 
 	schema := graphql.MustParseSchema(*schema.NewSchema(), &resolvers.Resolvers{DB: db}, opts...)
 
-	mux := http.NewServeMux()
-	mux.Handle("/graphql", handler.GraphiQL{})
-	mux.Handle("/query", handler.Authenticate(&handler.GraphQL{Schema: schema}))
-
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
 
@@ -67,6 +63,13 @@ func main() {
 		c.File("./frontend/public/index.html")
 	})
 
+	// graphql routes and route handling
+	// only enable graphql playground on dev mode
+	if gin.Mode() == gin.DebugMode {
+		router.GET("/graphql", gin.WrapH(handler.GraphiQL{}))
+	}
+	router.POST("/graphql", gin.WrapH(handler.Authenticate(&handler.GraphQL{Schema: schema})))
+
 	// Setup route group for the API
 	api := router.Group("/api")
 	{
@@ -79,7 +82,7 @@ func main() {
 
 	// Start and run the server depending on mode
 	if gin.Mode() == gin.DebugMode {
-		log.Fatal(router.Run(":3000"))
+		log.Fatal(router.Run(":" + config.CONFIG.Port))
 	} else if gin.Mode() == gin.ReleaseMode {
 		log.Fatal(autotls.Run(router, "gibjob.engineer"))
 	}
