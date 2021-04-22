@@ -3,6 +3,7 @@ package db
 import (
 	// "os"
 	"fmt"
+	"log"
 
 	"github.com/jinzhu/gorm"
 
@@ -32,10 +33,9 @@ func ConnectDB() (*DB, error) {
 
 	// connect to db
 	db, err := gorm.Open("postgres", dboptions)
-	//db, err := gorm.Open("postgres", "host=localhost port=5432 user=gibjob dbname=gibjob password=gibjob sslmode=disable")
 
 	if err != nil {
-		panic(err)
+		log.Fatalf("Couldnt connect to db: %s", err)
 	}
 
 	return &DB{db}, nil
