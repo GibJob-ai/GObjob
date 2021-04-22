@@ -64,7 +64,10 @@ func main() {
 	})
 
 	// graphql routes and route handling
-	router.GET("/graphql", gin.WrapH(handler.GraphiQL{}))
+	// only enable graphql playground on dev mode
+	if gin.Mode() == gin.DebugMode {
+		router.GET("/graphql", gin.WrapH(handler.GraphiQL{}))
+	}
 	router.POST("/graphql", gin.WrapH(handler.Authenticate(&handler.GraphQL{Schema: schema})))
 
 	// Setup route group for the API
