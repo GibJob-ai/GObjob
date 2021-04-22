@@ -8,6 +8,7 @@ require (
 	github.com/gin-gonic/contrib v0.0.0-20201101042839-6a891bf89f19
 	github.com/gin-gonic/gin v1.7.1
 	github.com/graph-gophers/graphql-go v1.0.0
+	github.com/hashicorp/hcl/v2 v2.10.0 // indirect
 	github.com/jinzhu/gorm v1.9.16
 	github.com/mandrigin/gin-spa v0.0.0-20200212133200-790d0c0c7335
 	github.com/mattdamon108/gqlmerge v0.2.3
