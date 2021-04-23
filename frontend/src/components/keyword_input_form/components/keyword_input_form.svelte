@@ -29,16 +29,7 @@
     keywords = [...keywords];
   }
 </script>
-<style lang="scss">
-  .top_buttons{
-    display: flex;
-    flex-flow: row nowrap;
-  }
-  .keywords{
-    display: flex;
-    flex-flow: column nowrap;
-  }
-</style>
+<style src="./keyword_input_form.scss"/>
 
 <h1>keyword mappings create/edit</h1>
 
