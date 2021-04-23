@@ -29,8 +29,7 @@
     keywords = [...keywords];
   }
 </script>
-<style src="./keyword_input_form.scss">
-</style>
+<style src="./keyword_input_form.scss"/>
 
 <h1>keyword mappings create/edit</h1>
 

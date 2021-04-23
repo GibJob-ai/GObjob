@@ -1,5 +1,4 @@
-<style src='./homepage.scss'>
-</style>
+<style src='./homepage.scss'/>
 <div class='page-bg'>
   <h1>title</h1>
   <div class='card'>
