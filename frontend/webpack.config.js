@@ -39,6 +39,10 @@ module.exports = {
 				}
 			},
 			{
+			 test: /\.svg/,
+			 type: 'asset/source'
+			},
+			{
 				test: /\.css$/,
 				use: [
 					MiniCssExtractPlugin.loader,
