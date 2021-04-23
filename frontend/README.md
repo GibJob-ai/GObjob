@@ -9,7 +9,7 @@ To install all frontend dependencies, run `yarn install`
 To use hot reloading, install inotify-tools
 
 ### Arch
-[arch](https://archlinux.org/packages/community/x86_64/inotify-tools/)
+[install inotify-tools from aur](https://archlinux.org/packages/community/x86_64/inotify-tools/)
 
 ### Debian/Ubuntu
 `apt install -y inotify-tools`
