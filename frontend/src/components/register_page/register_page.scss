@@ -1,0 +1,27 @@
+@import '../general/scss/fonts.scss';
+@import '../general/scss/form.scss';
+
+div{
+  display: flex;
+  flex-flow: column nowrap;
+}
+div#registerMain{
+  height: 100%;
+  width: 100%;
+  padding: 15% 25%;
+  display: flex;
+  justify-content: stretch;
+  align-content: center;
+  flex-flow: row-nowrap;
+}
+div#createAccountMain{
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 40px;
+  flex-basis: 1000px;
+  h1#registerTitle{
+    @include bold-title;
+    color: $text_0;
+    margin-bottom: 3em;
+  }
+}

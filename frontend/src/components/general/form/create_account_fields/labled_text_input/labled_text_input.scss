@@ -1,0 +1,9 @@
+@import "../../../scss/standard_stuff.scss";
+@import "../../../scss/fonts.scss";
+
+div.label{
+	@include force-width(150px);
+	@include force-vertical-text-centering(137px);
+	padding-right: 15px;
+	vertical-align: middle;
+}
