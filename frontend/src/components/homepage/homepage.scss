@@ -1,5 +1,5 @@
-@import '../../global_scss/fonts.scss';
-@import '../../global_scss/form.scss';
+@import '../global/scss/fonts.scss';
+@import '../global/scss/form.scss';
 *{
 	color: #FFFFFF;
 	text-align: center;
@@ -78,8 +78,13 @@ div#register-bar{
 		@include text-input-main-page;
 		margin-right: 15px;
 	}
-	div#register-button{
-		display: flex;
-		@include register-button;
+	a#register-button{
+		display: block;
+		@include link-button;
+		background-color: $accent_primary;
+		color: $text_0;
+		&:hover{
+			background-color: darken($accent_primary, 3%);
+		}
 	}
 }
