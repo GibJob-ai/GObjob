@@ -11,6 +11,7 @@
 	letter-spacing: -0.02em;
 	text-align: left;
 	color: rgba(0, 0, 0, 0.85);
+	text-decoration: none;
 }
 
 $mainpage-inputs-border-radius: 10px;
@@ -39,7 +40,9 @@ $button-height: 50px;
 	border-radius: $mainpage-inputs-border-radius;
 	height: $button-height;
 	line-height: $button-height;
+	display: block;
 	padding: 0 55px;
 	margin: 0 0;
 	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+	text-decoration: none;
 }

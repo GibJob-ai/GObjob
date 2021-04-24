@@ -1,5 +1,5 @@
 <script>
-  import TopBar from '../global/menu/topbar/topbar.svelte';
+  import TopBar from '../general/menu/topbar/topbar.svelte';
   $: register_link = '/register'
 </script>
 <style src='./homepage.scss'></style>

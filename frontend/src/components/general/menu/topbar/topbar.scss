@@ -1,5 +1,7 @@
 @import '../../scss/fonts.scss';
 @import '../../scss/standard_stuff.scss';
+@import '../../scss/form.scss';
+@import '../../scss/colours.scss';
 
 $topbar_button_margin: 5px;
 div#topbar-container{
@@ -19,22 +21,32 @@ div#topbar-container{
     align-items: center;
     padding: 0;
     margin: 0;
+		a.topbar-button#logoTopLeft{
+			@include link-button;
+		}
     div.topbar-group{
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
       margin: 0 auto;
+<<<<<<< HEAD:frontend/src/components/general/menu/topbar/topbar.scss
       div.topbar-button{
 				@include no-select;
         padding: 15px;
+=======
+      a.topbar-button{
+				@include link-button;
+        padding: 0 15px;
+>>>>>>> add stuff:frontend/src/components/general/menu/topbar/topbar.scss
         margin: 0 $topbar_button_margin;
         font-family: $poppins;
         font-style: normal;
         font-weight: 300;
         font-size: 26px;
-        line-height: 27px;
+        line-height: 50px;
+				height: 50px;
         letter-spacing: -0.02em;
-        color: #FFFFFF;
+        color: $text_0;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 8px;
         &#signin{
@@ -44,10 +56,15 @@ div#topbar-container{
           border: 1px solid #FFFFFF;
           margin-left: 10px;
         }
+<<<<<<< HEAD:frontend/src/components/general/menu/topbar/topbar.scss
 				&:hover, 
 				&:focus,
 				&:active {
 					color: #888888;
+=======
+				&:hover{
+					color: darken($text_0, 10%);
+>>>>>>> add stuff:frontend/src/components/general/menu/topbar/topbar.scss
 				}
       }
     }
