@@ -4,27 +4,30 @@
 
 <style src='./topbar.scss'></style>
 
-<div id="topbar-container">
-	<div id="topbar">
-		<GibjobLogo/>
+<div id='topbar-container'>
+	<div id='topbar'>
+		<a id='logotopleft' href='/' target='_self' class='topbar-button'>
+			<GibjobLogo/>
+		</a>
+
 		<div class='topbar-group'>
-			<div class="topbar-button">
+			<a href='/not_implemented' target='_blank' class='topbar-button'>
 				Overview
-			</div>
-			<div class="topbar-button">
+			</a>
+			<a href='/not_implemented' target='_blank' class='topbar-button'>
 				Demos
-			</div>
-			<div class="topbar-button">
+			</a>
+			<a href='/not_implemented' target='_blank' class='topbar-button'>
 				Requirements
-			</div>
+			</a>
 		</div>
 		<div class='topbar-group'>
-			<div class="topbar-button" id="signin">
+			<a href='/not_implemented' target='_self' class='topbar-button' id='signin'>
 				Sign in
-			</div>
-			<div class="topbar-button" id="signup">
+			</a>
+			<a href='/register' target='_self' class='topbar-button' id='signup'>
 				Sign up
-			</div>
+			</a>
 		</div>
 	</div>
 </div>

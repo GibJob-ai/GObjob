@@ -29,12 +29,6 @@ div#topbar-container{
       flex-flow: row nowrap;
       justify-content: space-between;
       margin: 0 auto;
-      div.topbar-button{
-				@include no-select;
-        padding: 15px;
-      a.topbar-button{
-				@include link-button;
-        padding: 0 15px;
       a.topbar-button{
 				@include link-button;
         padding: 0 15px;
@@ -63,5 +57,3 @@ div#topbar-container{
     }
   }
 }
-
-
