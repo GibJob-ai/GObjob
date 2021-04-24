@@ -11,22 +11,22 @@
 To install all *required* frontend dependencies, run `yarn install`
 
 ### Optional dependencies
-### Inotify-Tools
+#### Inotify-Tools
 Required for hot reloading
 
-#### Arch
+##### Arch
 [install inotify-tools from aur](https://archlinux.org/packages/community/x86_64/inotify-tools/)
 
-#### Debian/Ubuntu
+##### Debian/Ubuntu
 `apt install -y inotify-tools`
 
-### Pulse Audio
+#### Pulse Audio
 Required for hot reloading with fancy sound cues when builds fail/succeed
 
-#### Arch
+##### Arch
 [install pulseaudio from aur](https://archlinux.org/packages/extra/x86_64/pulseaudio/)
 
-#### Debian/Ubuntu
+##### Debian/Ubuntu
 `apt install -y pulseaudio`
 
 ## Build
