@@ -17,7 +17,8 @@
   },
   "scripts": {
     "build": "routify -b && cross-env NODE_ENV=production webpack",
-    "dev": "scripts/hotReload.sh"
+    "dev": "scripts/hotReload.sh",
+    "devSound": "scripts/hotReloadWithSound.sh"
   },
   "dependencies": {
     "@roxi/routify": "^2.15.1",
