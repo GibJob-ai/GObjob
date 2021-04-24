@@ -8,6 +8,12 @@
 </script>
 
 <style src='./resume_input_form.scss'></style>
+<style>
+    h1{
+        text-decoration: underline;
+    }
+
+</style>
 
 <h1>Resume Input Form</h1>
 
