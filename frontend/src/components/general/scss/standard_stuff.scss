@@ -24,15 +24,16 @@
 }
 
 @mixin force-height ($n){
-	min-width: $n;
-	width: $n;
-	max-width: $n;
+	min-height: $n;
+	height: $n;
+	max-height: $n;
 }
 
 @mixin force-vertical-text-centering ($n){
 	@include force-height($n);
 	display: inline-block;
 	line-height: $n;
+	height: $n;
 	padding-top: 0;
 	padding-bottom: 0;
 }

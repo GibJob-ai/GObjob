@@ -1,9 +1,30 @@
 @import "../../../scss/standard_stuff.scss";
 @import "../../../scss/fonts.scss";
+@import "../../../scss/form.scss";
 
+div.labeled-text-input{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	margin: 12px 0;
+}
 div.label{
-	@include force-width(150px);
-	@include force-vertical-text-centering(137px);
+	@include force-width(130px);
+	@include force-vertical-text-centering(50px);
+	color: $text_0;
 	padding-right: 15px;
-	vertical-align: middle;
+	text-align: right;
+	font-family: $poppins;
+	font-weight: 500;
+	font-size: 19px;
+}
+
+input{
+	@include text-input-main-page;
+	background-color: #404345;
+	color: $text_0;
+	font-family: $poppins;
+	font-weight: 500;
+	font-size: 19px;
 }
