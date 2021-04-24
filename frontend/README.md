@@ -4,8 +4,8 @@
 
 ## Install
 ### OS Requirements
-	* These installation instructions are currently only tested on linux
-		* if you are onboarding to the project and use a different OS, let us know and we'll help you port the install instructions to your OS as needed
+* These installation instructions are currently only tested on linux
+	* if you are onboarding to the project and use a different OS, let us know and we'll help you port the install instructions to your OS as needed
 
 ### Required dependencies
 To install all *required* frontend dependencies, run `yarn install`
