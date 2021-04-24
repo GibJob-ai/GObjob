@@ -1,5 +1,6 @@
 <script>
-  import TopBar from '../global/menu/topbar/topbar.svelte';
+  import TopBar from '../general/menu/topbar/topbar.svelte';
+  $: register_link = '/register'
 </script>
 <style src='./homepage.scss'></style>
 <div id='landing-page-main'>
@@ -20,9 +21,9 @@
         </div>
         <div id='register-bar'>
           <input type="text"/>
-          <div id="register-button">
+          <a href='{register_link}' id="register-button" target="_blank">
             Register
-          </div>
+          </a>
         </div>
       </div>
       <div id='demo-animation-placeholder'>
