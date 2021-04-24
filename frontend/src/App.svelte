@@ -2,7 +2,6 @@
 	import { Router } from "@roxi/routify";
 	import { routes } from "../.routify/routes"; // this is a build time import
 
-
 	// graphql stuff
 	// importing from core is a workaround because the good people at apollo
 	// are stupid and use react in a frontend agnostic framework
@@ -23,11 +22,22 @@
 	 }
 	`
 
-	const value = query(TEST);
-	console.log("value: " + value.data.test);
+	const promise = query(TEST, {})
 
+	promise.subscribe(value => {
+		if(value.loading){
+				console.log("loading");
+		}
+		else if(value.error){
+				console.err("graphql error: " + value.error)
+		}
+		else{
+			console.log(`graphql value: ${value.data.test}`);
+		}
+	});
 </script>
 
 <style src="./app.scss" global></style>
+
 <Router {routes}/>
 
