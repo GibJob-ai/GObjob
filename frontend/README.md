@@ -3,14 +3,13 @@
 **ALL THESE INSTRUCTIONS ARE TO BE USED INSIDE `<MAIN>/frontend`**
 
 ## Install
-### OS Requirements
-* These installation instructions are currently only tested on linux
-	* if you are onboarding to the project and use a different OS, let us know and we'll help you port the install instructions to your OS as needed
-
 ### Required dependencies
 To install all *required* frontend dependencies, run `yarn install`
 
 ### Optional dependencies
+* Optional dev features hot reloading and sound cues rely on the dependencies listed below which are currently only tested on linux
+	* if you are onboarding to the project and use a different OS, let us know and we'll help you port the install instructions to your OS as needed
+
 #### Inotify-Tools
 Required for hot reloading
 
