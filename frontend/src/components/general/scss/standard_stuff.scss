@@ -16,3 +16,23 @@
 @mixin button-cursor{
 	cursor: pointer;
 }
+
+@mixin force-width ($n){
+	min-width: $n;
+	width: $n;
+	max-width: $n;
+}
+
+@mixin force-height ($n){
+	min-width: $n;
+	width: $n;
+	max-width: $n;
+}
+
+@mixin force-vertical-text-centering ($n){
+	@include force-height($n);
+	display: inline-block;
+	line-height: $n;
+	padding-top: 0;
+	padding-bottom: 0;
+}
