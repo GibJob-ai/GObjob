@@ -5,4 +5,6 @@
 
 <style src='./logo.scss'></style>
 
-<Icon data="{gibjob}" size="111px" height="42.5px" color="red"/>
+<div class='icon-wrapper'>
+  <Icon data="{gibjob}" size="111px" height="42.5px" stroke=""/>
+</div>

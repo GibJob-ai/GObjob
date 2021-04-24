@@ -8,3 +8,4 @@
 <style src="./app.scss" global></style>
 
 <Router {routes}/>
+
