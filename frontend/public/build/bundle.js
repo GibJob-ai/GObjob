@@ -3,4 +3,4 @@
 	 {
 			test
 	 }
-	`,{}).subscribe((e=>{e.loading?console.log("loading"):e.error?console.err("graphql error: "+e.error):console.log(`primise: ${e.data.test}`)})),[]}class $i extends t.f_{constructor(e){super(),(0,t.S1)(this,e,qi,Mi,t.N8,{})}}new $i({target:document.body})})()})();
+	`,{}).subscribe((e=>{e.loading?console.log("loading"):e.error?console.err("graphql error: "+e.error):console.log(`value: ${e.data.test}`)})),[]}class $i extends t.f_{constructor(e){super(),(0,t.S1)(this,e,qi,Mi,t.N8,{})}}new $i({target:document.body})})()})();
