@@ -29,15 +29,15 @@ div#topbar-container{
       flex-flow: row nowrap;
       justify-content: space-between;
       margin: 0 auto;
-<<<<<<< HEAD:frontend/src/components/general/menu/topbar/topbar.scss
       div.topbar-button{
 				@include no-select;
         padding: 15px;
-=======
       a.topbar-button{
 				@include link-button;
         padding: 0 15px;
->>>>>>> add stuff:frontend/src/components/general/menu/topbar/topbar.scss
+      a.topbar-button{
+				@include link-button;
+        padding: 0 15px;
         margin: 0 $topbar_button_margin;
         font-family: $poppins;
         font-style: normal;
@@ -56,15 +56,8 @@ div#topbar-container{
           border: 1px solid #FFFFFF;
           margin-left: 10px;
         }
-<<<<<<< HEAD:frontend/src/components/general/menu/topbar/topbar.scss
-				&:hover, 
-				&:focus,
-				&:active {
-					color: #888888;
-=======
 				&:hover{
 					color: darken($text_0, 10%);
->>>>>>> add stuff:frontend/src/components/general/menu/topbar/topbar.scss
 				}
       }
     }
