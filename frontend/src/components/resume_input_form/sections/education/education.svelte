@@ -1,5 +1,5 @@
 <script>
-    import Section from './section.svelte';
+    import Section from '../section.svelte';
 
     let educationInfo = {
         school:'',

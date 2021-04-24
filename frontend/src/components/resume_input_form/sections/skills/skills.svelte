@@ -1,5 +1,5 @@
 <script>
-    import Section from './section.svelte';
+    import Section from '../section.svelte';
     let open = null;
     export let skillsSections = [];
     const expandKeywordList = () => {
@@ -15,27 +15,7 @@
     }
 </script>
 
-<style>
-    div.skill-buttons{
-        display: flex;
-        flex-flow: row nowrap;
-    }
-    div.skill-buttons>button{
-        font-size: 1em;
-    }
-    div.inputs>div.keyword-inputs{
-        display: flex;
-        flex-flow: column nowrap;
-    }
-    div.inputs>div.keyword-inputs>input.skills-section{
-        width:35%;
-        min-width: 300px;
-    }
-    div.inputs>div.keyword-inputs>input.skills-keyword{
-        width: 25%;
-        min-width: 280px;
-    }
-</style>
+<style src='./skills.scss'></style>
 
 <Section title='Skills'>
     {#if !open}

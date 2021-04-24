@@ -1,17 +1,13 @@
 <script>
-    let skills = []
-    import Skills from './skills.svelte';
-    import Experience from './experience.svelte';
-    import Education from './education.svelte';
+    let skills = [];
+    import Skills from './sections/skills/skills.svelte';
+    import Experience from './sections/experience/experience.svelte';
+    import Education from './sections/education/education.svelte';
+    import Awards from './sections/awards/awards.svelte';
     let skillsKeywords;
 </script>
 
-<style>
-    h1{
-        text-decoration: underline;
-    }
-
-</style>
+<style src='./resume_input_form.scss'></style>
 
 <h1>Resume Input Form</h1>
 
@@ -19,3 +15,4 @@
 <Experience title='Work Experience'/>
 <Experience title='Projects'/>
 <Education/>
+<Awards/>
