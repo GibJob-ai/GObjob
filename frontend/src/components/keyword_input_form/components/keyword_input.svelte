@@ -40,7 +40,7 @@
   }
 </script>
 
-<style src="./keyword_input.scss"/>
+<style src="./keyword_input.scss"></style>
 
 <div class='keyword-main'>
   <div class='name'>
