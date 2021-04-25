@@ -1,1 +1,0 @@
-(self.webpackChunksvelte_app=self.webpackChunksvelte_app||[]).push([[679],{679:(e,t,s)=>{"use strict";s.r(t),s.d(t,{default:()=>l});var n=s(379);function u(e){let t;return{c(){t=(0,n.bG)("h1"),t.textContent="fuck"},m(e,s){(0,n.$T)(e,t,s)},p:n.ZT,i:n.ZT,o:n.ZT,d(e){e&&(0,n.og)(t)}}}class c extends n.f_{constructor(e){super(),(0,n.S1)(this,e,null,u,n.N8,{})}}const l=c}}]);

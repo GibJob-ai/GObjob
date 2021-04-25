@@ -9,7 +9,7 @@ succeed_sound () {
 }
 
 fail_sound () {
-				paplay ./scripts/hotReloadSounds/failed.ogg
+				paplay ./scripts/hotReloadSounds/failed.ogg --volume=65535
 }
 
 try_build
