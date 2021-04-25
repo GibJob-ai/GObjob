@@ -1,1 +1,5 @@
-<h1>no resume input yet sry</h1>
+<script>
+    import ResumeInputForm from '../../../components/resume_input_form/resume_input_form.svelte';
+</script>
+
+<ResumeInputForm/>

@@ -1,27 +1,37 @@
 @import '../general/scss/fonts.scss';
 @import '../general/scss/form.scss';
+@import '../general/scss/colours.scss';
 
 div{
-  display: flex;
-  flex-flow: column nowrap;
+	display: flex;
+	flex-flow: column nowrap;
 }
+
 div#registerMain{
-  height: 100%;
-  width: 100%;
-  padding: 15% 25%;
-  display: flex;
-  justify-content: stretch;
-  align-content: center;
-  flex-flow: row-nowrap;
+	height: 100%;
+	width: 100%;
+	padding: 15% 25%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: row nowrap;
+	background-color: $bg_0;
 }
+
 div#createAccountMain{
-  display: flex;
-  flex-flow: column nowrap;
-  padding: 40px;
-  flex-basis: 1000px;
-  h1#registerTitle{
-    @include bold-title;
-    color: $text_0;
-    margin-bottom: 3em;
-  }
+	display: flex;
+	flex-flow: column nowrap;
+	padding: 40px;
+	flex: 1 1 1000px;
+	height: fit-content;
+	background-color: $bg_2;
+	border-radius: 14px;
+	align-items: center;
+	h1#registerTitle{
+		@include bold-title;
+		@include force-width(696px);
+		color: $text_0;
+		margin-bottom: 1em;
+		font-size: 40px;
+	}
 }
