@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+@mixin plain-link{
+	text-decoration: none;
+	color: $accent_blue_desaturated;
+}
+
 @mixin no-select{
 	-webkit-touch-callout: none; /* iOS Safari */
 		-webkit-user-select: none; /* Safari */
