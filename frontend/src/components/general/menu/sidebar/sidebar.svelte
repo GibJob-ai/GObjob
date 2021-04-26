@@ -1,12 +1,25 @@
 <script>
+	import GibjobLogo from '../../logo/logo.svelte';
 	import { createEventDispatcher, onDestroy } from 'svelte';
 	export let modalWidth;
+	import Icon from 'svelte-icon';
+	import homeIcon from '../../../../../public/assets/icons/home.svg';
+	import resumeIcon from '../../../../../public/assets/icons/resume.svg';
+	import coverLetterIcon from '../../../../../public/assets/icons/cover_letter.svg';
+	import applicationsIcon from '../../../../../public/assets/icons/applications.svg';
+	
 
 	const dispatch = createEventDispatcher();
 	export const close = () => dispatch('close');
 
 	let modal;
-	
+
+	let sidebarButtons = [
+		{'name': 'Home', 'href': '/', 'icon': homeIcon, 'size': '30px', 'pad': '18px 3px 0 5px'},
+		{'name': 'Resumes', 'href': '/not_implemented', 'icon': resumeIcon, 'size': '30px', 'pad': '20px 3px 0 5px'},
+		{'name': 'Cover Letters', 'href': '/not_implemented', 'icon': coverLetterIcon, 'size': '30px', 'pad': '20px 3px 0 4px'},
+		{'name': 'Applications', 'href': '/applications', 'icon': applicationsIcon, 'size': '21px', 'pad': '6px 7px 0 9px'}
+	];
 
 	const handle_keydown = e => {
 		if (e.key === 'Escape') {
@@ -48,8 +61,20 @@
 </div>
 
 <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-	<!-- <slot></slot> -->
-	<h1>CONTENT GO HERE</h1>
-	<!-- svelte-ignore a11y-autofocus -->
-	<button autofocus on:click={close}>close modal</button>
+	<div id='sidebarContentContainer'>
+		<a id='logo' href='/' target='_self' class='sidebar-button'>
+			<GibjobLogo/>
+		</a>
+		{#each sidebarButtons as sidebarButton}
+			<a href={sidebarButton.href} target='_self' class='sidebar-button'>
+				<div class="icon-wrapper" style="padding: {sidebarButton.pad}">
+					<Icon data="{sidebarButton.icon}" size="{sidebarButton.size}" height=40px stroke="" color="white" fill="white"/>
+				</div>
+				<div class='sidebar-text'>
+					{sidebarButton.name}
+				</div>
+			</a>
+		{/each}
+		<button on:click={close}>close modal</button>
+	</div>
 </div>

@@ -2,7 +2,7 @@
 $open-sans: 'Open Sans', sans-serif;
 $poppins: 'Poppins', sans-serif;
 
-@mixin bold-title() {
+@mixin bold-title {
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: bold;
