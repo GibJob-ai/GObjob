@@ -1,5 +1,5 @@
 <script>
-	import LabledTextInput from './labled_text_input/labled_text_input.svelte';
+	import LabledTextInput from '../labled_text_input/labled_text_input.svelte';
 	import {email} from '../../../../store/register.js';
 	let inputs = [{'name':'Username', 'val': ''},{'name':'Email', 'val': $email},{'name':'Password', 'val': ''}];
 	email.set(''); // null out the store after taking the value so that if they reload the page they start over
