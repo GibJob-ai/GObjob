@@ -1,14 +1,16 @@
+@import '../../scss/colours.scss';
+@import '../../scss/form.scss';
 .modal-background {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 196px;
 	height: 100%;
-	background: rgba(0,0,0,0.3);
+	background-color: $bg_2;
 }
 
 .modal {
-	position: absolute;
+	position: fixed;
 	// max-width: 45em;
 	// max-height: calc(100vh - 4em);
 	// overflow: auto;
@@ -20,4 +22,37 @@
 
 button {
 	display: block;
+}
+
+div#sidebarContentContainer{
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: flex-start;
+	padding-top: 30px;
+	a.sidebar-button{
+		@include link-button;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+		align-items: center;
+		margin-right: auto;
+		div.icon-wrapper{
+			margin: 0;
+			padding: 0; // will be overriden inside the for loop to fix individual icon offsets
+			color: $text_0;
+		}
+		div.sidebar-text{
+			@include force-vertical-text-centering(30px);
+			margin-left: 10px;
+			font-family: $poppins;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 19px;
+			letter-spacing: -0.02em;
+			color: $text_0;
+		}
+	}
 }
