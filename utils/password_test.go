@@ -6,7 +6,7 @@ import (
 )
 
 // check if hashpass returns a hash
-func TestHashPassReturnsSomething(t *testing.T) {
+func TestHashPass(t *testing.T) {
 	// generate a random 31bit string
 	pass := string(rand.Int31())
 
