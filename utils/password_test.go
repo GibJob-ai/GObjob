@@ -13,10 +13,10 @@ func TestHashPass(t *testing.T) {
 	result := HashPass(pass)
 
 	if result == "" {
-		t.Errorf("Hash of %s was empty", pass)
+		t.Errorf("Hash of %#v was empty", pass)
 		return
 	}
-	t.Logf("HashPass sucessfully returns something from %s: %s", pass, result)
+	t.Logf("HashPass sucessfully returns something from %#v: %#v", pass, result)
 }
 
 // check if CompareHashPass returns the correct result
@@ -26,8 +26,8 @@ func TestCompareHashPass(t *testing.T) {
 	result := HashPass(pass)
 
 	if ans := CompareHashPass(pass, result); ans {
-		t.Logf("CompareHashPass returned the correct result")
+		t.Logf("CompareHashPass returned the correct result: pass=%#v, hash=%#v", pass, result)
 	} else {
-		t.Errorf("CompareHashPass didnt return the correct result: pass=%s, hash=%s", pass, result)
+		t.Errorf("CompareHashPass didnt return the correct result: pass=%#v, hash=%#v", pass, result)
 	}
 }
