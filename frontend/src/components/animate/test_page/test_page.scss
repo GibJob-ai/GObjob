@@ -1,0 +1,113 @@
+@import '../../general/scss/standard_stuff.scss';
+
+@mixin hamburger($size){
+	width: $size;
+	height: $size;
+}
+
+$hamburger_size: 120px;
+
+div.hamburger{
+	padding: 15px;
+	@include force-width($hamburger_size);
+	@include force-height($hamburger_size);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: grey;
+
+	svg{
+		// width: 100%;
+		// height: auto;
+		overflow: visible;
+	}
+}
+
+nav {
+  max-height: 4rem;
+  padding: .5rem;
+  overflow: hidden;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 2rem;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  transition: var(--animations-time);  
+  
+  li {
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 1.25rem 3rem;
+  }
+}
+
+
+:root {
+    --animations-time: .4s;
+    --icon-stroke-width: 8;
+  
+    --color-dark: hsl(240, 1%, 28%);
+    --color-light: hsl(280, 43%, 99%);
+    --color-brand: hsl(5, 65%, 50%);
+    --color-brand-02: hsla(5, 65%, 50%, .2);
+}
+//// Icon ////
+
+button {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  transition: var(--animations-time);  
+  &:focus {
+    outline: none;
+    background: var(--color-brand-02);
+  }
+}
+
+svg {
+  width: 3rem;
+  height: 3rem;
+  display: block;
+}
+
+#middleBarCircle, #topLine, #bottomLine {
+  stroke: var(--color-brand);
+  stroke-width: var(--icon-stroke-width);
+  transition: var(--animations-time);
+  stroke-linecap: round;
+}
+
+#middleBarCircle{
+  stroke-dashoffset: 0;
+  stroke-dasharray: 112, 2000;
+}
+
+
+//// Open navigation state ////
+
+nav.open {
+  max-height: 100vh;
+
+  #middleBarCircle {
+    stroke-dasharray: 600, 2000;
+    stroke-dashoffset: -270;
+  }
+
+  #topLine {
+    transform: translate(65px, -10px) rotate(45deg);
+  }
+
+  #bottomLine {
+    transform: translate(-64px, 64px) rotate(-45deg);
+  }
+
+  ul {
+    opacity: 1;
+  }
+}
