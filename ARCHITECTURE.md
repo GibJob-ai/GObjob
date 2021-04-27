@@ -54,7 +54,7 @@ This is the place where the graphql schema lives.
 
 ### `utils/`
 
-This is the place where utility functions live. We currently use this just for JWT stuff.
+This is the place where utility functions live. 
 
 ### `handler/`
 
