@@ -29,3 +29,6 @@ On dev mode you can GET at `/graphql` to get graphql playground
 ## Architecture
 
 This can be read at `ARCHITECTURE.md`
+
+## Migrate
+go run ./migrations/init.go
