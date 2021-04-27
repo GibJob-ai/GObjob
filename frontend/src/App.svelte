@@ -22,7 +22,7 @@
 				console.log("loading");
 		}
 		else if(value.error){
-				console.err("graphql error: " + value.error)
+				console.error("graphql error: " + value.error)
 		}
 		else{
 			console.log(`graphql value: ${value.data.test}`);
