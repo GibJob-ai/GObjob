@@ -4,6 +4,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"time"
 
+	"github.com/GibJob-ai/GObjob/utils"
 	"github.com/jinzhu/gorm"
 	// gorm postgres dialect
 	// "github.com/jinzhu/gorm/dialects/postgres"
@@ -26,26 +27,4 @@ type User struct {
 	LastName  string `gorm:"type:varchar(50);not null"`
 	Bio       string
 	Avatar    string
-}
-
-// HashPassword : hashing the password
-func (user *User) HashPassword() {
-	hash, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
-
-	if err != nil {
-		return
-	}
-
-	user.Password = string(hash)
-}
-
-// ComparePassword : compare the password
-func (user *User) ComparePassword(password string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
-
-	if err != nil {
-		return false
-	}
-
-	return true
 }

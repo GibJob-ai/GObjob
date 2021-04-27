@@ -10,10 +10,10 @@ func TestHashPass(t *testing.T) {
 	// generate a random 31bit string
 	pass := string(rand.Int31())
 
-	result := HashPass(pass)
+	result, err := HashPass(pass)
 
-	if result == "" {
-		t.Errorf("Hash of %#v was empty", pass)
+	if err != nil {
+		t.Errorf("%#v couldnt be hashed: %#v", pass, err)
 		return
 	}
 	t.Logf("HashPass sucessfully returns something from %#v: %#v", pass, result)
@@ -23,7 +23,12 @@ func TestHashPass(t *testing.T) {
 func TestCompareHashPass(t *testing.T) {
 	pass := "hello"
 
-	result := HashPass(pass)
+	result, err := HashPass(pass)
+
+	if err != nil {
+		t.Errorf("%#v couldnt be hashed: %#v", pass, err)
+		return
+	}
 
 	if ans := CompareHashPass(pass, result); ans {
 		t.Logf("CompareHashPass returned the correct result: pass=%#v, hash=%#v", pass, result)

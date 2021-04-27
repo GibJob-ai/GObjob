@@ -1,22 +1,24 @@
 package utils
 
 import (
-	"golang.org/x/crypto/bcrypt"
+	"errors"
 	"log"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 // HashPass: hashes a password with a salt
 // params: password string
-// returns: string, the hashed password
-func HashPass(pass string) string {
+// returns: string or err, the hashed password,
+func HashPass(pass string) (string, error) {
 	bytePass := []byte(pass)
 	hash, err := bcrypt.GenerateFromPassword(bytePass, bcrypt.DefaultCost)
 	if err != nil {
 		log.Printf("Hash error: %s", err)
-		return ""
+		return "", errors.New("coulndt hash password")
 	}
 
-	return string(hash)
+	return string(hash), nil
 }
 
 // CompareHashPass: compares a hash and a password
