@@ -1,10 +1,8 @@
 package model
 
 import (
-	"golang.org/x/crypto/bcrypt"
 	"time"
 
-	"github.com/GibJob-ai/GObjob/utils"
 	"github.com/jinzhu/gorm"
 	// gorm postgres dialect
 	// "github.com/jinzhu/gorm/dialects/postgres"
