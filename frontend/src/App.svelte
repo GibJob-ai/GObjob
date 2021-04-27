@@ -3,29 +3,22 @@
 	import { routes } from "../.routify/routes"; // this is a build time import
 
 	// graphql stuff
-	// importing from core is a workaround because the good people at apollo
-	// are stupid and use react in a frontend agnostic framework
-	import { ApolloClient, InMemoryCache } from "@apollo/client/core";
-	import { setClient, query } from "svelte-apollo";
-	import gql from "graphql-tag";
+	import { initClient, query, operationStore } from "@urql/svelte"
 
-	const client = new ApolloClient({
-		uri: "http://localhost:3000/graphql",
-		cache: new InMemoryCache(),
+	initClient({
+			url: 'http://localhost:3000/graphql'
 	})
 
-	setClient(client);
-
-	const TEST = gql`
+	const test = operationStore(`
 	 {
 			test
 	 }
-	`
+	`);
 
-	const promise = query(TEST, {})
+	query(test)
 
-	promise.subscribe(value => {
-		if(value.loading){
+	test.subscribe(value => {
+		if(value.fetching){
 				console.log("loading");
 		}
 		else if(value.error){
