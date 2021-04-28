@@ -13,5 +13,8 @@ require (
 	github.com/mandrigin/gin-spa v0.0.0-20200212133200-790d0c0c7335
 	github.com/mattdamon108/gqlmerge v0.2.3
 	github.com/mattn/go-sqlite3 v2.0.1+incompatible // indirect
-	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
+	golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b
+	golang.org/x/net v0.0.0-20210423184538-5f58ad60dda6 // indirect
+	golang.org/x/sys v0.0.0-20210426230700-d19ff857e887 // indirect
+	golang.org/x/term v0.0.0-20210422114643-f5beecf764ed // indirect
 )

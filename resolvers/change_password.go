@@ -2,9 +2,11 @@ package resolvers
 
 import (
 	"context"
+	"log"
 
 	"github.com/GibJob-ai/GObjob/handler"
 	"github.com/GibJob-ai/GObjob/model"
+	"github.com/GibJob-ai/GObjob/utils"
 )
 
 // ChangePassword mutation change password
@@ -22,8 +24,13 @@ func (r *Resolvers) ChangePassword(ctx context.Context, args changePasswordMutat
 		return &ChangePasswordResponse{Status: false, Msg: &msg, User: nil}, nil
 	}
 
-	user.Password = args.Password
-	user.HashPassword()
+	hashPassword, err := utils.HashPass(args.Password)
+	if err != nil {
+		log.Printf("ERROR, couldnt hash password: %#v", err)
+		return nil, err
+	}
+
+	user.Password = hashPassword
 
 	r.DB.Save(&user)
 	return &ChangePasswordResponse{Status: true, Msg: nil, User: &UserResponse{u: &user}}, nil
