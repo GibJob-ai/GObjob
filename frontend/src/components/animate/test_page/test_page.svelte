@@ -2,30 +2,7 @@
 	import { quintOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
-	let hamburgerSize=100;
-	let hamburgerPad=hamburgerSize*0.1;
-		let isOpen;
-		let items = ['hi', 'hi2'];
-	const [send, receive] = crossfade({
-		duration: d => Math.sqrt(d * 200),
-
-		fallback(node, params) {
-			const style = getComputedStyle(node);
-			const transform = style.transform === 'none' ? '' : style.transform;
-
-			return {
-				duration: 600,
-				easing: quintOut,
-				css: t => `
-					transform: ${transform} scale(${t});
-					opacity: ${t}
-				`
-			};
-		}
-	});
-	let thing1 = false;
-	let list1 = [1];
-	let list2 = [];
+	let isOpen = false;
 </script>
 
 <style src='./test_page.scss'>
