@@ -1,3 +1,4 @@
+@import '../general/scss/colours.scss';
 h1{
 	text-decoration: underline;
 }
@@ -5,4 +6,5 @@ h1{
 div#resumeInputMain{
 	display: flex;
 	flex-flow: column nowrap;
+	background-color: $bg_0;
 }

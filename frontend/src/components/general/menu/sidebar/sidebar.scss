@@ -11,6 +11,10 @@
 
 .modal {
 	position: fixed;
+	height: 100%;
+	width: 196px;
+	margin: 0;
+	padding: 0;
 	// max-width: 45em;
 	// max-height: calc(100vh - 4em);
 	// overflow: auto;
@@ -55,4 +59,11 @@ div#sidebarContentContainer{
 			color: $text_0;
 		}
 	}
+}
+
+div#fullHeightContainer{
+	position: fixed;
+	height: 100%;
+	min-width: 0px;
+	width: 0px;
 }

@@ -1,16 +1,25 @@
 <script>
 	import GibjobLogo from '../../logo/logo.svelte';
 	import { createEventDispatcher, onDestroy } from 'svelte';
+	import { fade, fly } from 'svelte/transition';
 	export let modalWidth;
 	import Icon from 'svelte-icon';
 	import homeIcon from '../../../../../public/assets/icons/home.svg';
 	import resumeIcon from '../../../../../public/assets/icons/resume.svg';
 	import coverLetterIcon from '../../../../../public/assets/icons/cover_letter.svg';
 	import applicationsIcon from '../../../../../public/assets/icons/applications.svg';
+	import OpenCloseIcon from '../open_close_icon/open_close_icon.svelte';
+	
+	export let visible = true;
+
+	// const dispatch = createEventDispatcher();
+	// export const close = () => dispatch('close');
 	
 
-	const dispatch = createEventDispatcher();
-	export const close = () => dispatch('close');
+	const toggle = () => {
+		// TODO some animation
+		visible = !visible;
+	}
 
 	let modal;
 
@@ -50,31 +59,48 @@
 			previously_focused.focus();
 		});
 	}
+	
+	const flyIn = {x: -200, duration: 200};
+	const flyOut = {x: -200, duration: 200};
 </script>
 <style src='./sidebar.scss'>
 </style>
 
 <svelte:window on:keydown={handle_keydown}/>
 
-<div class="modal-background" on:click={close}
-		 bind:clientWidth={modalWidth}>
-</div>
-
-<div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-	<div id='sidebarContentContainer'>
-		<a id='logo' href='/' target='_self' class='sidebar-button'>
-			<GibjobLogo/>
-		</a>
-		{#each sidebarButtons as sidebarButton}
-			<a href={sidebarButton.href} target='_self' class='sidebar-button'>
-				<div class="icon-wrapper" style="padding: {sidebarButton.pad}">
-					<Icon data="{sidebarButton.icon}" size="{sidebarButton.size}" height=40px stroke="" color="white" fill="white"/>
-				</div>
-				<div class='sidebar-text'>
-					{sidebarButton.name}
-				</div>
-			</a>
-		{/each}
-		<button on:click={close}>close modal</button>
+{#if visible}
+	<div class="modal-background"
+			 bind:clientWidth={modalWidth}
+			 in:fly="{flyIn}"
+			 out:fly="{flyOut}">
 	</div>
-</div>
+
+	<div
+		class="modal"
+		role="dialog"
+		aria-modal="true"
+		bind:this={modal}
+		in:fly="{flyIn}"
+		out:fly="{flyOut}">
+		<div id='sidebarContentContainer'>
+			<a id='logo' href='/' target='_self' class='sidebar-button'>
+				<GibjobLogo/>
+			</a>
+			{#each sidebarButtons as sidebarButton}
+				<a href={sidebarButton.href} target='_self' class='sidebar-button'>
+					<div class="icon-wrapper" style="padding: {sidebarButton.pad}">
+						<Icon data="{sidebarButton.icon}" size="{sidebarButton.size}" height=40px stroke="" color="white" fill="white"/>
+					</div>
+					<div class='sidebar-text'>
+						{sidebarButton.name}
+					</div>
+				</a>
+			{/each}
+			<OpenCloseIcon open={true} on:click={toggle}/>
+		</div>
+	</div>
+{:else}
+	<div id=fullHeightContainer>
+		<OpenCloseIcon open={false} on:click={toggle}/>
+	</div>
+{/if}
