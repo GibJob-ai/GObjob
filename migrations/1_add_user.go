@@ -6,7 +6,6 @@ import (
 )
 
 func migrate_1_add_user(d *db.DB) {
-	// load the config
 	d.DropTableIfExists(&model.User{})
 	d.CreateTable(&model.User{})
 }

@@ -6,7 +6,6 @@ import (
 )
 
 func migrate_2_add_files(d *db.DB) {
-	// load the config
-	d.DropTableIfExists(&model.User{}) // temp, this will be replaced with an actual new model
-	d.CreateTable(&model.User{}) // temp, this will be replaced with an actual new model
+	d.DropTableIfExists(&model.File{})
+	d.CreateTable(&model.File{})
 }
