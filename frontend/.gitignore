@@ -4,6 +4,7 @@ public/bundle.*
 public/*.css
 public/*.js
 public/*.svg
+public/*.js.LICENSE.txt
 public/build/
 package-lock.json
 yarn.lock
