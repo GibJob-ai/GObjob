@@ -1,5 +1,3 @@
-package main
-
 import (
 	"log"
 	"github.com/GibJob-ai/GObjob/db"
@@ -30,6 +28,6 @@ func main() {
 
 	defer d.Close()
 
-	d.DropTableIfExists(&model.User{})
-	d.CreateTable(&model.User{})
+	migrate_1(d)
+	migrate_2(d)
 }
