@@ -5,7 +5,7 @@ import (
 	"github.com/GibJob-ai/GObjob/model"
 )
 
-func migrate_2(d *db.DB) {
+func migrate_2_add_files(d *db.DB) {
 	// load the config
 	d.DropTableIfExists(&model.User{}) // temp, this will be replaced with an actual new model
 	d.CreateTable(&model.User{}) // temp, this will be replaced with an actual new model
