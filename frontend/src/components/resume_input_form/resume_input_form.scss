@@ -1,8 +1,17 @@
-h1{
-	text-decoration: underline;
-}
+@import '../general/scss/colours.scss';
+@import '../general/scss/fonts.scss';
 
 div#resumeInputMain{
 	display: flex;
 	flex-flow: column nowrap;
+	background-color: $bg_0;
+	height: 100%;
+	align-items: center;
+	h1{
+		@include bold-title;
+		color: $text_0;
+		margin: 0.3em auto 15px 2em;
+		width: fit-content;
+		text-align: left;
+	}
 }

@@ -17,7 +17,7 @@
 		<h3>Preffered First Name</h3>
 		<input type='text' bind:value={contactInfo.firstName}/>
 		<h3>Last Name</h3>
-		<input type='text' bind:value={contactInfo.lastName}/>
+		<input type='text' bind:value={contactInfo.lastNam}/>
 		<h3>Phone Number</h3>
 		<input type='text' bind:value={contactInfo.phone}/>
 		<h3>Email Address</h3>
