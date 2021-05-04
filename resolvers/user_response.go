@@ -29,14 +29,9 @@ func (r *UserResponse) Password() string {
 	return r.u.Password
 }
 
-// FirstName for UserResponse
-func (r *UserResponse) FirstName() string {
-	return r.u.FirstName
-}
-
-// LastName for UserResponse
-func (r *UserResponse) LastName() string {
-	return r.u.LastName
+// Username for UserResponse
+func (r *UserResponse) Username() string {
+	return r.u.Username
 }
 
 // CreatedAt for UserResponse

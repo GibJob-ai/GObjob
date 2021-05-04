@@ -2,8 +2,7 @@ type Mutation {
   signUp(
     email: String!
     password: String!
-    firstName: String!
-    lastName: String!
+    username: String!
   ): SignUpResponse!
   signIn(email: String!, password: String!): SignInResponse!
   changePassword(password: String!): ChangePasswordResponse!

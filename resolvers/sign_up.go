@@ -17,7 +17,7 @@ func (r *Resolvers) SignUp(args signUpMutationArgs) (*SignUpResponse, error) {
 		return nil, err
 	}
 
-	newUser := model.User{Email: args.Email, Password: hashPassword, FirstName: args.FirstName, LastName: args.LastName}
+	newUser := model.User{Email: args.Email, Password: hashPassword, Username: args.Username}
 
 	if !r.DB.Where("email = ?", args.Email).First(&model.User{}).RecordNotFound() {
 		msg := "Already signed up"
@@ -30,10 +30,9 @@ func (r *Resolvers) SignUp(args signUpMutationArgs) (*SignUpResponse, error) {
 }
 
 type signUpMutationArgs struct {
-	Email     string
-	Password  string
-	FirstName string
-	LastName  string
+	Email    string
+	Password string
+	Username string
 }
 
 // SignUpResponse is the response type
