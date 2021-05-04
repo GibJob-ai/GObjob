@@ -18,7 +18,7 @@ func (r *Resolvers) SignIn(args signInMutationArgs) (*SignInResponse, error) {
 		return &SignInResponse{Status: false, Msg: &msg, Token: nil}, nil
 	}
 
-	if !user.ComparePassword(args.Password) {
+	if !utils.CompareHashPass(args.Password, user.Password) {
 		msg := "Password is not correct"
 		return &SignInResponse{Status: false, Msg: &msg, Token: nil}, nil
 	}

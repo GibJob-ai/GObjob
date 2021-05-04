@@ -1,20 +1,28 @@
 package resolvers
 
 import (
+	"log"
+
 	"github.com/GibJob-ai/GObjob/model"
+	"github.com/GibJob-ai/GObjob/utils"
 )
 
 // SignUp mutation creates user
 func (r *Resolvers) SignUp(args signUpMutationArgs) (*SignUpResponse, error) {
 
-	newUser := model.User{Email: args.Email, Password: args.Password, FirstName: args.FirstName, LastName: args.LastName}
+	// hash the password
+	hashPassword, err := utils.HashPass(args.Password)
+	if err != nil {
+		log.Printf("ERROR, couldnt hash password: %#v", err)
+		return nil, err
+	}
+
+	newUser := model.User{Email: args.Email, Password: hashPassword, FirstName: args.FirstName, LastName: args.LastName}
 
 	if !r.DB.Where("email = ?", args.Email).First(&model.User{}).RecordNotFound() {
 		msg := "Already signed up"
 		return &SignUpResponse{Status: false, Msg: &msg, User: nil}, nil
 	}
-
-	newUser.HashPassword()
 
 	r.DB.Create(&newUser)
 

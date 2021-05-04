@@ -44,6 +44,10 @@ This is the place that we put the entire frontend. This has its own `README.md` 
 
 This is the place where the models are placed.
 
+### `migrations/`
+
+Migrations directory, one go script for each new database revision.
+
 ### `resolvers/`
 
 This is the place where the graphql resolvers live.
@@ -54,7 +58,7 @@ This is the place where the graphql schema lives.
 
 ### `utils/`
 
-This is the place where utility functions live. We currently use this just for JWT stuff.
+This is the place where utility functions live. 
 
 ### `handler/`
 

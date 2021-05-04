@@ -22,7 +22,7 @@
 			</a>
 		</div>
 		<div class='topbar-group'>
-			<a href='/not_implemented' target='_self' class='topbar-button' id='signin'>
+			<a href='/login' target='_self' class='topbar-button' id='signin'>
 				Sign in
 			</a>
 			<a href='/register' target='_self' class='topbar-button' id='signup'>

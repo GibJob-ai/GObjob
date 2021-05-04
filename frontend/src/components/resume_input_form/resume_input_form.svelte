@@ -15,7 +15,7 @@
 </style>
 
 <Sidebar bind:modalWidth={sidebarWidth}/>
-<div id="resumeInputMain" style="margin-left: {sidebarWidth}px">
+<div id="resumeInputMain" style="padding-left: 300px">
 	<h1>Resume Input Form</h1>
 
 	<ContactInfo/>
