@@ -3,8 +3,18 @@ type User {
   email: String!
   firstName: String!
   lastName: String!
-  bio: String
-  avatar: String
   createdAt: String!
   updatedAt: String!
+  files: [File]!
+}
+
+type File {
+  id: ID!
+  url: String!
+  fileType: String!
+  documentType: String!
+  name: String!
+  createdAt: String!
+  updatedAt: String!
+  user: User!
 }

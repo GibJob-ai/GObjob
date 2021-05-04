@@ -1,8 +1,8 @@
 type Query {
-  getMyProfile: GetMyProfileResponse!
+  getUser: GetUserResponse!
   test: Boolean!
 }
-type GetMyProfileResponse {
+type GetUserResponse {
   ok: Boolean!
   error: String
   user: User

@@ -11,4 +11,6 @@ type User struct {
 	Password  string `gorm:"not null"`
 	FirstName string `gorm:"type:varchar(50);not null"`
 	LastName  string `gorm:"type:varchar(50);not null"`
+
+  Files []File
 }
