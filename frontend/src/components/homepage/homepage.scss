@@ -15,7 +15,7 @@ div{
 
 div#landing-page-main{
   background: linear-gradient(76.74deg, #1A0841 31.6%, rgba(88, 14, 123, 0.81) 107.51%);
-  height: 100%;
+  flex: 1 1 auto;
   display: flex;
   flex-flow: column nowrap;
   justify-content: stretch;

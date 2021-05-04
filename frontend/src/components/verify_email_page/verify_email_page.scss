@@ -11,7 +11,7 @@ div{
 
 div#verify-page-main{
   background: $bg_0;
-  height: 100%;
+  flex: 1 1 auto;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
