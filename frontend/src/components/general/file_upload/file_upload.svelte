@@ -14,5 +14,5 @@
 
 <div class='file_upload'>
 	<h1>Your resume PDFs</h1>
-	<ToggleList bind:items={toggle_items}>
+	<ToggleList bind:items={toggle_items}/>
 </div>

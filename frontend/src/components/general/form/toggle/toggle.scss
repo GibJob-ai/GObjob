@@ -4,6 +4,7 @@
   display: inline-block;
   width: 60px;
   height: 34px;
+  margin: 0 15px;
 }
 
 .switch input {
@@ -31,11 +32,11 @@
   left: 4px;
   bottom: 4px;
   background-color: #FFFFFF;
-  transition: .4s;
+  transition: .25s;
 }
 
 input:checked + .slider {
-  background-color: $blue;
+  background-color: $accent_primary;
 }
 
 input:focus + .slider {
