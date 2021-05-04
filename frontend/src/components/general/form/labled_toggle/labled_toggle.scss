@@ -1,0 +1,12 @@
+@import '../../scss/fonts.scss';
+div.labled_toggle{
+	display: flex;
+	div.title{
+		margin: 0 auto 0 0;
+		font-family: $poppins;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 17.8286px;
+		line-height: 69px;
+	}
+}

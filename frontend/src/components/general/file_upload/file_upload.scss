@@ -1,0 +1,14 @@
+@import '../scss/colours.scss';
+@import '../scss/fonts.scss';
+div.file_upload{
+	padding: 40px;
+	background-color: $bg_3;
+	h1{
+		font-family: $poppins;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 28px;
+		letter-spacing: -0.02em;
+		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	}
+}
