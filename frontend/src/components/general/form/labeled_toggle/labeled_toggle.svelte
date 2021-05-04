@@ -3,9 +3,9 @@
 	export let on;
 	export let title;
 </script>
-<style src='labled_toggle.scss'>
+<style src='labeled_toggle.scss'>
 </style>
-<div class='labled_toggle'>
+<div class='labeled_toggle'>
 	<div class='title'>{title}</div>
 	<Toggle bind:on/>
 </div>

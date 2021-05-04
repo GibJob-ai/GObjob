@@ -1,6 +1,6 @@
 <script>
 		import Section from '../section.svelte'
-		import LabeledTextInput from '../../../general/form/labled_text_input/labled_text_input.svelte'
+		import LabeledTextInput from '../../../general/form/labeled_text_input/labeled_text_input.svelte'
 		let contactInfo = [
 				{id: 'firstName', title: 'First Name', value: ''},
 				{id: 'lastName', title: 'Last Name', value: ''},

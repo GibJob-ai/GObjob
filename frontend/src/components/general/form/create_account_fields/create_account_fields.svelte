@@ -1,5 +1,5 @@
 <script>
-	import LabledTextInput from '../labled_text_input/labled_text_input.svelte';
+	import LabeledTextInput from '../labeled_text_input/labeled_text_input.svelte';
 	import {email} from '../../../../store/register.js';
 	let inputs = [{'name':'Username', 'val': ''},{'name':'Email', 'val': $email},{'name':'Password', 'val': ''}];
 	email.set(''); // null out the store after taking the value so that if they reload the page they start over
@@ -45,9 +45,9 @@
 </style>
 
 <form id='registerForm' bind:this={form} on:submit|preventDefault={submit}>
-	<div id=labledInputsBlock>
+	<div id=labeledInputsBlock>
 		{#each inputs as input}
-			<LabledTextInput label={input.name} bind:value={input.val} bind:form={form}/>
+			<LabeledTextInput label={input.name} bind:value={input.val} bind:form={form}/>
 		{/each}
 		<button type='submit' value='Submit' id='registerButton'>
 			Register
