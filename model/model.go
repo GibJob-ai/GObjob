@@ -3,10 +3,10 @@ package model
 
 import (
 	"time"
-	"github.com/jinzhu/gorm"
+	// "github.com/jinzhu/gorm"
 )
 
-var _ := gorm; // make linter happy by using gorm TODO needed??
+// var _ := gorm; // make linter happy by using gorm TODO needed??
 
 // Model : gorm.Model definition
 type Model struct {

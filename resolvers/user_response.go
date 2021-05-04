@@ -39,16 +39,6 @@ func (r *UserResponse) LastName() string {
 	return r.u.LastName
 }
 
-// Bio for UserResponse
-func (r *UserResponse) Bio() *string {
-	return &r.u.Bio
-}
-
-// Avatar for UserResponse
-func (r *UserResponse) Avatar() *string {
-	return &r.u.Avatar
-}
-
 // CreatedAt for UserResponse
 func (r *UserResponse) CreatedAt() string {
 	return r.u.CreatedAt.String()
