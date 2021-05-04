@@ -3,8 +3,8 @@
 	import {email} from '../../../../store/register.js';
 	let username = '';
 	let password = '';
-	let email = `${$email}`; // copy val
-	let inputs = [{'name':'Username', 'val': username},{'name':'Email', 'val': email},{'name':'Password', 'val': password}];
+	let email_ = `${$email}`; // copy val
+	let inputs = [{'name':'Username', 'val': username},{'name':'Email', 'val': email_},{'name':'Password', 'val': password}];
 	email.set(''); // null out the store after taking the value so that if they reload the page they start over
 	let form;
 
@@ -29,7 +29,7 @@
 	// const signUp = mutation(signupMutation);
 	const submit = () => {
 		signupMutation({
-			email: email,
+			email: email_,
 			password: password,
 			username: username,
 		}).then(result => {
