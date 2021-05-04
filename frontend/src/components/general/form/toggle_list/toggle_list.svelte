@@ -1,11 +1,14 @@
 <script>
-	import LabeledToggle from '../labeled_toggle/labeled_toggle.svelte';
+	import Toggle from '../toggle/toggle.svelte';
 	export let items;
 </script>
 <style src='toggle_list.scss'>
 </style>
 <div class='toggle_list'>
 	{#each items as item}
-		<LabeledToggle title="{item.title}" bind:on={item.on}/>
+		<div class='labeled_toggle'>
+			<div class='title'>{item.title}</div>
+			<Toggle bind:on={item.on}/>
+		</div>
 	{/each}
 </div>
