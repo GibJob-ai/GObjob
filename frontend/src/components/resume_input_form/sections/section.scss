@@ -6,13 +6,15 @@ div.section{
 	background-color: $bg_2;
 	border-radius: 14px;
 	display: flex;
-	flex: column nowrap;
+	flex-flow: column nowrap;
 	padding:0 50px 0 25px;
-	width: fit-content;
+	margin: 10px 0;
+	width: 1000px;
 	h1{
 		@include bold-title;
 		font-size: 35px;
 		color: $text_0;
+		text-align: left;
 	}
 }
 

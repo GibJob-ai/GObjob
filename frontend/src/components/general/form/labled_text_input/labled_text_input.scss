@@ -8,9 +8,10 @@ div.labeled-text-input{
 	justify-content: center;
 	align-items: center;
 	margin: 12px 0;
+	width: 100%;
 }
 div.label{
-	@include force-width(130px);
+	@include force-width(200px);
 	@include force-vertical-text-centering(50px);
 	color: $text_0;
 	padding-right: 15px;
@@ -21,6 +22,7 @@ div.label{
 }
 
 input{
+	@include force-width(450px);
 	@include text-input-main-page;
 	background-color: #404345;
 	color: $text_0;
