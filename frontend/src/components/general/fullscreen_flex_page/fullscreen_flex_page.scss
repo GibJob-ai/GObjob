@@ -1,5 +1,7 @@
 main.fullscreen-flex-page{
-  height: 100%;
+  min-height: 100vh;
+  height: fit-content;
+  overflow: hidden;
   display: flex;
   flex-flow: column nowrap;
   justify-content: stretch;
