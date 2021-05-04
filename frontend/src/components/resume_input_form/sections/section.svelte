@@ -2,5 +2,9 @@
 	export let title;
 </script>
 
-<h1>{title}</h1>
-<slot></slot>
+<style src='./section.scss'>
+</style>
+<div class='section'>
+	<h1>{title}</h1>
+	<slot></slot>
+</div>

@@ -1,32 +1,24 @@
 <script>
-	import Section from '../section.svelte'
-	let contactInfo = {
-		phone:'',
-		email:'',
-		linkedIn:'',
-		github:'',
-		website:''
-	}
+		import Section from '../section.svelte'
+		import LabeledTextInput from '../../../general/form/labled_text_input/labled_text_input.svelte'
+		let contactInfo = [
+				{id: 'firstName', title: 'First Name', value: ''},
+				{id: 'lastName', title: 'Last Name', value: ''},
+				{id: 'phone', title: 'Phone Number', value: ''},
+				{id: 'email', title: 'Email Address', value: ''},
+				{id: 'linkedIn', title: 'LinkedIn', value: ''},
+				{id: 'github', title: 'Github', value: ''},
+				{id: 'website', title: 'Website', value: ''}
+		]
 </script>
 
 <style src='contact_info.scss'>
 </style>
 
 <Section title='Contact Information'>
-	<div class='inputs'>
-		<h3>Preffered First Name</h3>
-		<input type='text' bind:value={contactInfo.firstName}/>
-		<h3>Last Name</h3>
-		<input type='text' bind:value={contactInfo.lastName}/>
-		<h3>Phone Number</h3>
-		<input type='text' bind:value={contactInfo.phone}/>
-		<h3>Email Address</h3>
-		<input type='text' bind:value={contactInfo.email}/>
-		<h3>LinkedIn</h3>
-		<input type='text' bind:value={contactInfo.linkedIn}/>
-		<h3>Github</h3>
-		<input type='text' bind:value={contactInfo.github}/>
-		<h3>Website</h3>
-		<input type='text' bind:value={contactInfo.website}/>
-	</div>
+		<div class='inputs'>
+				{#each contactInfo as item}
+						<LabeledTextInput bind:value={item.value} label="{item.title}"/>
+				{/each}
+		</div>
 </Section>
