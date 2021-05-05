@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	migrate_only := flag.Bool("migrate_only-only", false, "migrate_only db but dont serve")
+	migrate_only := flag.Bool("migrate-only", false, "migrate-only db but dont serve")
 	flag.Parse()
 
 	// load the config
