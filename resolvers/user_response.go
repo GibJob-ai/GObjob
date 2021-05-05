@@ -45,47 +45,10 @@ func (r *UserResponse) UpdatedAt() string {
 }
 
 // Files for UserResponse
-func (r *UserResponse) Files() []*fileResolver {
-	var files []*fileResolver
+func (r *UserResponse) Files() []*FileResponse {
+	var files []*FileResponse
 	for _, file := range r.u.Files {
-		files = append(files, &fileResolver{&file})
+		files = append(files, &FileResponse{&file})
 	}
 	return files
-}
-
-type fileResolver struct {
-	f *model.File
-}
-
-func (r *fileResolver) ID() graphql.ID {
-	id := strconv.Itoa(int(r.f.ID))
-	return graphql.ID(id)
-}
-
-func (r *fileResolver) Url() string {
-	return r.f.Url
-}
-
-func (r *fileResolver) FileType() string {
-	return r.f.FileType
-}
-
-func (r *fileResolver) DocumentType() string {
-	return r.f.DocumentType
-}
-
-func (r *fileResolver) Name() string {
-	return r.f.Name
-}
-
-func (r *fileResolver) CreatedAt() string {
-	return r.f.CreatedAt.String()
-}
-
-func (r *fileResolver) UpdatedAt() string {
-	return r.f.UpdatedAt.String()
-}
-
-func (r *fileResolver) User() int {
-	return 1
 }
