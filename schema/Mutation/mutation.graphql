@@ -7,18 +7,3 @@ type Mutation {
   signIn(email: String!, password: String!): String!
   changePassword(password: String!): User!
 }
-type SignUpResponse {
-  ok: Boolean!
-  error: String
-  user: User
-}
-type SignInResponse {
-  ok: Boolean!
-  error: String
-  token: String
-}
-type ChangePasswordResponse {
-  ok: Boolean!
-  error: String
-  user: User
-}
