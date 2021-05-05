@@ -22,10 +22,13 @@ func (r *Resolvers) SignUp(args signUpMutationArgs) (*UserResponse, error) {
 
 	// if user already exists return an error of UserExists
 	if !r.DB.Where("email = ?", args.Email).First(&model.User{}).RecordNotFound() {
-		return nil, &userExistsError{Code: "UserExists", Message: "User already signed up"}
+		return nil, &signUpError{Code: "UserExists", Message: "User already signed up"}
 	}
 
-	r.DB.Create(&newUser)
+	result := r.DB.Create(&newUser)
+	if result.Error != nil {
+		return nil, &signUpError{Code: "DBErr", Message: "Database had an error"}
+	}
 
 	return &UserResponse{u: &newUser}, nil
 }
@@ -38,16 +41,16 @@ type signUpMutationArgs struct {
 }
 
 // user exists error
-type userExistsError struct {
+type signUpError struct {
 	Code    string `json:"code"`
 	Message string `json:"message"`
 }
 
-func (e userExistsError) Error() string {
+func (e signUpError) Error() string {
 	return fmt.Sprintf("error [%s]: %s", e.Code, e.Message)
 }
 
-func (e userExistsError) Extensions() map[string]interface{} {
+func (e signUpError) Extensions() map[string]interface{} {
 	return map[string]interface{}{
 		"code":    e.Code,
 		"message": e.Message,
