@@ -1,11 +1,11 @@
 package main
 
 import (
-	"flag"
 	"log"
 
 	"github.com/gin-gonic/gin"
 
+	"github.com/GibJob-ai/GObjob/cmd"
 	"github.com/GibJob-ai/GObjob/config"
 	"github.com/GibJob-ai/GObjob/db"
 	"github.com/GibJob-ai/GObjob/migrations"
@@ -13,8 +13,7 @@ import (
 )
 
 func main() {
-	migrate_only := flag.Bool("migrate-only", false, "migrate-only db but dont serve")
-	flag.Parse()
+	cmdResults := cmd.Execute()
 
 	// load the config
 	config.Load()
@@ -38,8 +37,19 @@ func main() {
 
 	defer db.Close()
 
-	migrations.Migrate(db)
-	if !*migrate_only {
+	if *cmdResults.Nuke {
+		migrations.Nuke(db)
+		migrations.Migrate(db)
+		log.Print("Succesfully Recreated db")
+	} else if *cmdResults.Migrate {
+		migrations.Migrate(db)
+		log.Print("Succesfully Migrated db")
+	} else if *cmdResults.Migrate_serve {
+		migrations.Migrate(db)
+		log.Print("Succesfully Migrated db")
+		server.Serve(db)
+	} else {
 		server.Serve(db)
 	}
+
 }
