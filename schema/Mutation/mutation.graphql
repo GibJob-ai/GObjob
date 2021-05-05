@@ -3,9 +3,9 @@ type Mutation {
     email: String!
     password: String!
     username: String!
-  ): SignUpResponse!
-  signIn(email: String!, password: String!): SignInResponse!
-  changePassword(password: String!): ChangePasswordResponse!
+  ): User!
+  signIn(email: String!, password: String!): String!
+  changePassword(password: String!): User!
 }
 type SignUpResponse {
   ok: Boolean!
