@@ -15,5 +15,4 @@ type File {
   name: String!
   createdAt: String!
   updatedAt: String!
-  user: User!
 }

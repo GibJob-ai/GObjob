@@ -4,6 +4,6 @@ type Mutation {
     password: String!
     username: String!
   ): User!
-  signIn(email: String!, password: String!): String!
+  signIn(email: String!, password: String!): String
   changePassword(password: String!): User!
 }
