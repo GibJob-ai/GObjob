@@ -31,4 +31,6 @@ On dev mode you can GET at `/graphql` to get graphql playground
 This can be read at `ARCHITECTURE.md`
 
 ## Migrate
-To migrate the db run `go run ./migrations/init.go`
+The server migrates automatically on boot
+
+If you wish to only migrate and not serve then run `go run main.go --migrate-only`

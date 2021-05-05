@@ -1,6 +1,7 @@
 package resolvers
 
 import (
+	"fmt"
 	"strconv"
 
 	"github.com/GibJob-ai/GObjob/model"
@@ -8,49 +9,46 @@ import (
 )
 
 // SignIn mutation creates user
-func (r *Resolvers) SignIn(args signInMutationArgs) (*SignInResponse, error) {
+func (r *Resolvers) SignIn(args signInMutationArgs) (*string, error) {
 	user := model.User{}
 
 	r.DB.Where("email = ?", args.Email).First(&user)
 
 	if user.ID == 0 {
-		msg := "Not Sign up yet"
-		return &SignInResponse{Status: false, Msg: &msg, Token: nil}, nil
+		return nil, &signInError{Code: "NotSignedUp", Message: "User is not signed up"}
 	}
 
 	if !utils.CompareHashPass(args.Password, user.Password) {
-		msg := "Password is not correct"
-		return &SignInResponse{Status: false, Msg: &msg, Token: nil}, nil
+		return nil, &signInError{Code: "PassBad", Message: "Wrong Password"}
 	}
 
 	userIDString := strconv.Itoa(int(user.ID))
 	tokenString, err := utils.SignJWT(&userIDString)
 	if err != nil {
-		msg := "Error in generating JWT"
-		return &SignInResponse{Status: false, Msg: &msg, Token: nil}, nil
+		return nil, &signInError{Code: "ErrJWT", Message: "Error generating JWT"}
 	}
 
-	return &SignInResponse{Status: true, Msg: nil, Token: tokenString}, nil
+	return tokenString, nil
+}
+
+// sign in error
+type signInError struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+func (e signInError) Error() string {
+	return fmt.Sprintf("error [%s]: %s", e.Code, e.Message)
+}
+
+func (e signInError) Extensions() map[string]interface{} {
+	return map[string]interface{}{
+		"code":    e.Code,
+		"message": e.Message,
+	}
 }
 
 type signInMutationArgs struct {
 	Email    string
 	Password string
-}
-
-// SignInResponse is the response type
-type SignInResponse struct {
-	Status bool
-	Msg    *string
-	Token  *string
-}
-
-// Ok for SignUpResponse
-func (r *SignInResponse) Ok() bool {
-	return r.Status
-}
-
-// Error for SignUpResponse
-func (r *SignInResponse) Error() *string {
-	return r.Msg
 }

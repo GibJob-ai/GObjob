@@ -29,24 +29,9 @@ func (r *UserResponse) Password() string {
 	return r.u.Password
 }
 
-// FirstName for UserResponse
-func (r *UserResponse) FirstName() string {
-	return r.u.FirstName
-}
-
-// LastName for UserResponse
-func (r *UserResponse) LastName() string {
-	return r.u.LastName
-}
-
-// Bio for UserResponse
-func (r *UserResponse) Bio() *string {
-	return &r.u.Bio
-}
-
-// Avatar for UserResponse
-func (r *UserResponse) Avatar() *string {
-	return &r.u.Avatar
+// Username for UserResponse
+func (r *UserResponse) Username() string {
+	return r.u.Username
 }
 
 // CreatedAt for UserResponse
@@ -57,4 +42,13 @@ func (r *UserResponse) CreatedAt() string {
 // UpdatedAt for UserResponse
 func (r *UserResponse) UpdatedAt() string {
 	return r.u.UpdatedAt.String()
+}
+
+// Files for UserResponse
+func (r *UserResponse) Files() []*FileResponse {
+	var files []*FileResponse
+	for _, file := range r.u.Files {
+		files = append(files, &FileResponse{&file})
+	}
+	return files
 }

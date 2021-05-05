@@ -2,6 +2,7 @@ package resolvers
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/GibJob-ai/GObjob/handler"
@@ -10,18 +11,16 @@ import (
 )
 
 // ChangePassword mutation change password
-func (r *Resolvers) ChangePassword(ctx context.Context, args changePasswordMutationArgs) (*ChangePasswordResponse, error) {
+func (r *Resolvers) ChangePassword(ctx context.Context, args changePasswordMutationArgs) (*UserResponse, error) {
 	userID := ctx.Value(handler.ContextKey("userID"))
 
 	if userID == nil {
-		msg := "Not Authorized"
-		return &ChangePasswordResponse{Status: false, Msg: &msg, User: nil}, nil
+		return nil, &changePassError{Code: "NotAuth", Message: "Not authorized"}
 	}
 	user := model.User{}
 
 	if err := r.DB.First(&user, userID).Error; err != nil {
-		msg := "Not existing user"
-		return &ChangePasswordResponse{Status: false, Msg: &msg, User: nil}, nil
+		return nil, &changePassError{Code: "NotExist", Message: "User Doesnt Exist"}
 	}
 
 	hashPassword, err := utils.HashPass(args.Password)
@@ -33,26 +32,25 @@ func (r *Resolvers) ChangePassword(ctx context.Context, args changePasswordMutat
 	user.Password = hashPassword
 
 	r.DB.Save(&user)
-	return &ChangePasswordResponse{Status: true, Msg: nil, User: &UserResponse{u: &user}}, nil
+	return &UserResponse{u: &user}, nil
 }
 
 type changePasswordMutationArgs struct {
 	Password string
 }
 
-// ChangePasswordResponse is the response type
-type ChangePasswordResponse struct {
-	Status bool
-	Msg    *string
-	User   *UserResponse
+type changePassError struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
 }
 
-// Ok for ChangePasswordResponse
-func (r *ChangePasswordResponse) Ok() bool {
-	return r.Status
+func (e changePassError) Error() string {
+	return fmt.Sprintf("error [%s]: %s", e.Code, e.Message)
 }
 
-// Error for ChangePasswordResponse
-func (r *ChangePasswordResponse) Error() *string {
-	return r.Msg
+func (e changePassError) Extensions() map[string]interface{} {
+	return map[string]interface{}{
+		"code":    e.Code,
+		"message": e.Message,
+	}
 }
