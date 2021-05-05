@@ -2,41 +2,40 @@ package resolvers
 
 import (
 	"context"
+	"fmt"
 
-	"github.com/GibJob-ai/GObjob/model"
 	"github.com/GibJob-ai/GObjob/handler"
+	"github.com/GibJob-ai/GObjob/model"
 )
 
 // GetUser resolver
-func (r *Resolvers) GetUser(ctx context.Context) (*GetUserResponse, error) {
+func (r *Resolvers) GetUser(ctx context.Context) (*UserResponse, error) {
 	userID := ctx.Value(handler.ContextKey("userID"))
 
 	if userID == nil {
-		msg := "Not Authorized"
-		return &GetUserResponse{Status: false, Msg: &msg, User: nil}, nil
+		return nil, &getUserError{Code: "NotAuth", Message: "Not Authorized"}
 	}
 
 	user := model.User{}
 	if err := r.DB.First(&user, userID).Error; err != nil {
-		msg := "Not found"
-		return &GetUserResponse{Status: false, Msg: &msg, User: nil}, nil
+		return nil, &getUserError{Code: "NotFound", Message: "User not found"}
 	}
-	return &GetUserResponse{Status: true, Msg: nil, User: &UserResponse{u: &user}}, nil
+	return &UserResponse{u: &user}, nil
 }
 
-// GetUserResponse is the response type
-type GetUserResponse struct {
-	Status bool
-	Msg    *string
-	User   *UserResponse
+// user exists error
+type getUserError struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
 }
 
-// Ok for GetUserResponse
-func (r *GetUserResponse) Ok() bool {
-	return r.Status
+func (e getUserError) Error() string {
+	return fmt.Sprintf("error [%s]: %s", e.Code, e.Message)
 }
 
-// Error for GetUserResponse
-func (r *GetUserResponse) Error() *string {
-	return r.Msg
+func (e getUserError) Extensions() map[string]interface{} {
+	return map[string]interface{}{
+		"code":    e.Code,
+		"message": e.Message,
+	}
 }

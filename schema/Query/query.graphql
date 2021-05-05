@@ -1,9 +1,4 @@
 type Query {
-  getUser: GetUserResponse!
+  getUser: User!
   test: Boolean!
-}
-type GetUserResponse {
-  ok: Boolean!
-  error: String
-  user: User
 }
