@@ -16,6 +16,7 @@ $option-group-title-indent: 5px;
 $scrollbar-pad-vertical: 10px;
 *{
 	::-webkit-scrollbar-track {
+		background: rgba(15, 15, 15, 0.4);
 		border-top: $scrollbar-pad-vertical transparent solid;
 		border-bottom: $scrollbar-pad-vertical transparent solid;
 	}
