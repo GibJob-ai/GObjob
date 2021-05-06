@@ -42,3 +42,9 @@
 	padding-top: 0;
 	padding-bottom: 0;
 }
+
+@mixin scrollbar-overlay{
+	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: overlay;
+}
