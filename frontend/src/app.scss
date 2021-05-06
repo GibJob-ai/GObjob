@@ -9,6 +9,9 @@
   padding: 0;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: overlay;
 }
 :global(html){
   scroll-behavior: smooth;
@@ -22,11 +25,11 @@ $scrollbar-pad-horizontal: 8px;
 $scrollbar-pad-vertical: 0px;
 :global(::-webkit-scrollbar) {
 	width: $scrollbar-pad-horizontal+$scrollbar-width;
-	height: 10px;
+	height: $scrollbar-width;
 }
 
 :global(::-webkit-scrollbar-thumb) {
-	background: fade-out(#C4C4C4, .2);
+	background: rgba(130,130,130,0.5);
 	border-top: $scrollbar-pad-vertical transparent solid;
 	border-bottom: $scrollbar-pad-vertical transparent solid;
 	border-right: $scrollbar-pad-horizontal transparent solid;
@@ -34,9 +37,9 @@ $scrollbar-pad-vertical: 0px;
 }
 
 :global(::-webkit-scrollbar-track) {
-	background: rgba(0, 0, 0, 0.2);
+	background: transparent;
 	border-top: $scrollbar-pad-vertical transparent solid;
 	border-bottom: $scrollbar-pad-vertical transparent solid;
 	border-right: $scrollbar-pad-horizontal transparent solid;
-	background-clip: padding-box;
+	background-clip: padding-box !important;
 }
