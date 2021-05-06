@@ -55,7 +55,7 @@
 <div class='file_upload'>
 	<h1>Your resume PDFs</h1>
 	<ToggleList bind:items={toggle_items}/>
-	<div style='display: flex; flex-flow: column nowrap; align-items: stretch;'>
+	<div style='display: flex; flex-flow: column nowrap; align-items: stretch; width: 100%;'>
 		<SelectBox
 			bind:items={select_items_flat_short}
 			expanded={false}
@@ -69,7 +69,7 @@
 			expanded={false}
 			label={'select from flat_long'}/>
 		<SelectBox
-			bind:items={select_items_flat_long}
+			bind:items={select_items_grouped_long}
 			expanded={false}
 			label={'select from grouped_long'}/>
 		<SelectBox
@@ -85,7 +85,7 @@
 			expanded={true}
 			label={'select from flat_long'}/>
 		<SelectBox
-			bind:items={select_items_flat_long}
+			bind:items={select_items_grouped_long}
 			expanded={true}
 			label={'select from grouped_long'}/>
 	</div>
