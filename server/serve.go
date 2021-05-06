@@ -28,6 +28,8 @@ func Serve(db *db.DB) {
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
 
+	router.Use(NoFlocMiddleware())
+
 	//////////////////
 	// serving single page application stuff
 	//////////////////
