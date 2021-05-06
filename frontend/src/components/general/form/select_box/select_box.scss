@@ -120,6 +120,7 @@ ul.select-options{
 
 ul.select-options.expanded{
 	border-radius: $border-radius;
+	background-color: $select-background;
 	padding: 15px 0;
 	li.option{
 		text-indent: $option-indent + 8px;
