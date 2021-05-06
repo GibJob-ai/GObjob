@@ -1,129 +1,140 @@
 @import '../../scss/colours.scss';
-$select-border: #777777;
-$select-focus: #ff0000;
+@import '../../scss/standard_stuff.scss';
+$text-color: #fff;
+$select-background: $bg_2b;
+$select-width: 220px;
+$select-height: 40px;
+$option-height: 36px;
+$option-group-title-height: 22px;
+$border-radius: 5px;
+$select-font-size: 16px;
+$option-font-size: 16px;
+$option-group-font-size: 13px;
+$option-indent: 15px;
+$option-group-title-indent: 5px;
 
+$scrollbar-pad-vertical: 10px;
 *{
-	box-sizing: border-box;
-	color: $text_0;
-}
-
-select{
-	flex: 1 1 auto;
-	appearance: none;
-	background-color: transparent;
-	border: none;
-	padding: 0 1em 0 0;
-	margin: 0;
-	width: 100%;
-	font-family: inherit;
-	font-size: inherit;
-	cursor: inherit;
-	line-height: inherit;
-
-	// Stack above custom arrow
-	z-index: 1;
-
-	&::-ms-expand {
-		display: none;
+	::-webkit-scrollbar-track {
+		border-top: $scrollbar-pad-vertical transparent solid;
+		border-bottom: $scrollbar-pad-vertical transparent solid;
 	}
-
-	// Remove focus outline, will add on alternate element
-	outline: none;
+	::-webkit-scrollbar-thumb {
+		border-top: $scrollbar-pad-vertical transparent solid;
+		border-bottom: $scrollbar-pad-vertical transparent solid;
+	}
+	@include no-select;
 }
-	
-option{
-	color: #A79D9D;
-	&.selected{
-		color: $text_0;
-		background-color: $accent_secondary;
+
+select.select-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+
+div.select{
+  font-size: $select-font-size;
+  color: $text-color;
+	margin: 15px 0;
+}
+
+div.select.dropdown {
+  display: inline-block;
+  position: relative;
+	height: $select-height;
+  cursor: pointer;
+}
+
+.select-styled {
+  position: absolute; 
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $select-background;
+  padding: 8px 15px;
+	border-radius: $border-radius;
+	@include force-vertical-text-centering($select-height);
+  &:after {
+    content:"";
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-color: $text-color transparent transparent transparent;
+    position: absolute;
+    top: 16px;
+    right: 10px;
+  }
+  &:hover {
+    background-color: darken($select-background, 2);
+  }
+  &:active, &.active {
+		border-bottom-left-radius: 0 !important;
+		border-bottom-right-radius: 0 !important;
+    background-color: darken($select-background, 5);
+    &:after {
+      top: 9px;
+      border-color: transparent transparent $text-color transparent;
+    }
+  }
+}
+
+ul.select-options{
+  margin: 0 !important;
+  padding: 0;
+  list-style: none;
+  background-color: darken($select-background, 5);
+	max-height: $option-height * 5;
+	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: overlay;
+	display: flex;
+	flex-flow: column nowrap;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  li.option {
+		cursor: pointer;
+    margin: 0;
+    text-indent: $option-indent;
+		font-size: $option-font-size;
+		color: darken($text-color, 10);
+		@include force-height($option-height);
+		@include force-vertical-text-centering($option-height);
+    &:hover{
+			color: $text-color;
+      background: $accent_secondary;
+    }
+    &.selected{
+			color: $text-color;
+      background: $accent_secondary;
+    }
+  }
+	li.groupTitle{
+		color: darken($text-color, 30);
+    text-indent: $option-group-title-indent;
+		font-size: $option-group-font-size;
+		@include force-height($option-group-title-height);
+		@include force-vertical-text-centering($option-group-title-height);
 	}
 }
 
-.select {
-	display: grid;
-	margin-bottom: 15px;
-	grid-template-areas: "select";
-	align-items: center;
-	position: relative;
-
-	select,
-	&::after {
-		grid-area: select;
+ul.select-options.expanded{
+	border-radius: $border-radius;
+	padding: 15px 0;
+	li.option{
+    text-indent: $option-indent + 8px;
 	}
-
-	min-width: 15ch;
-	max-width: 30ch;
-	padding-left: 15px;
-
-	border: none;
-	border-radius: 0.25em;
-	padding: 0.25em 0.25em;
-
-	font-size: 1.25rem;
-	cursor: pointer;
-	line-height: 1.1;
-
-	// Optional styles
-	// remove for transparency
-	background-color: #fff;
-	background-color: $bg_2b;
-	// background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-
-	// Custom arrow
-	&:not(.select--multiple)::after {
-		content: "";
-		justify-self: end;
-		width: 0.8em;
-		height: 0.5em;
-		background-color: $select-border;
-		clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+	li.groupTitle{
+    text-indent: $option-group-title-indent + 8px;
 	}
 }
 
-select:focus + .focus {
-	position: absolute;
-	top: -1px;
-	left: -1px;
-	right: -1px;
-	bottom: -1px;
-	border: none;
-	// border: 2px solid $select-focus;
-	border-radius: inherit;
-}
-
-select.expanded {
-	padding-right: 0;
-
-	/*
-	 * Safari will not reveal an option
-	 * unless the select height has room to 
-	 * show all of it
-	 * Firefox and Chrome allow showing 
-	 * a partial option
-	 */
-	height: 6rem;
-
-	option {
-		white-space: normal;
-
-		// Only affects Chrome
-		outline-color: $select-focus;
-	}
-
-	//	 &:not(:disabled) option {
-	//		 border-radius: 12px;
-	//		 transition: 120ms all ease-in;
-
-	//		 &:checked {
-	//			 background: linear-gradient(hsl(242, 61%, 76%), hsl(242, 61%, 71%));
-	//			 padding-left: 0.5em;
-	//			 color: black !important;
-	//		 }
-	//	 }
-}
-
-.select--disabled {
-	cursor: not-allowed;
-	background-color: #eee;
-	background-image: linear-gradient(to top, #ddd, #eee 33%);
+ul.select-options.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+	border-top: 1px solid lighten($select-background, 10);
+	border-bottom-left-radius: $border-radius !important;
+	border-bottom-right-radius: $border-radius !important;
 }

@@ -9,75 +9,46 @@
 	export let selected; // selected item id (binding)
 	export let expanded = false;
 
-	let active=false;
+	let active = expanded?true:false;
 
-	$: grouped = items[0].hasOwnProperty(items);
+	const dropdown = !expanded;
+	const grouped = items[0].hasOwnProperty('items');
+	
+	let selectedTitle = label;
 
-	const updateSelection = (id) => {
-		selected = id;
+	const select = (item) => {
+		selected = item.id;
+		selectedTitle = item.title;
+		deselectAll();
+		item.selected = true;
+		active = expanded?true:false;
+		items = [...items]; // classic svelte hack to force reload
 	}
-	const selectedTitle = () => {
+
+	const deselectAll = () => {
 		items.forEach(function (i) {
-				if (i.id === selected){
-						return i.title;
-				}
+			if (grouped){
+				i.items.forEach(function (j) {
+					j.selected = false;
+				});
+			}
+			else{
+				i.selected = false;
+			}
 		});
-		return label;
 	}
-// $('select').each(function(){
-    // var $this = $(this), numberOfOptions = $(this).children('option').length;
-  
-    // $this.addClass('select-hidden'); 
-    // $this.wrap('<div class="select"></div>');
-    // $this.after('<div class="select-styled"></div>');
 
-    // var $styledSelect = $this.next('div.select-styled');
-    // $styledSelect.text($this.children('option').eq(0).text());
-  
-    // var $list = $('<ul />', {
-        // 'class': 'select-options'
-    // }).insertAfter($styledSelect);
-  
-    // for (var i = 0; i < numberOfOptions; i++) {
-        // $('<li />', {
-            // text: $this.children('option').eq(i).text(),
-            // rel: $this.children('option').eq(i).val()
-        // }).appendTo($list);
-    // }
-  
-    // var $listItems = $list.children('li');
-  
-    // $styledSelect.click(function(e) {
-        // e.stopPropagation();
-        // $('div.select-styled.active').not(this).each(function(){
-            // $(this).removeClass('active').next('ul.select-options').hide();
-        // });
-        // $(this).toggleClass('active').next('ul.select-options').toggle();
-    // });
-  
-    // $listItems.click(function(e) {
-        // e.stopPropagation();
-        // $styledSelect.text($(this).text()).removeClass('active');
-        // $this.val($(this).attr('rel'));
-        // $list.hide();
-        // //console.log($this.val());
-    // });
-  
-    // $(document).click(function() {
-        // $styledSelect.removeClass('active');
-        // $list.hide();
-    // });
-// });
+	const isSelected = (item) => {
+		return item.id === selected;
+	}
 </script>
-<style src='select_box2.scss'>
+<style src='select_box.scss'>
 </style>
-<div class='select'>
+<div class='select' class:expanded class:dropdown>
 	<select bind:value={selected}
-					size={expanded?6:null}
-					class:expanded
 					class="select-hidden">
 		<option value="" disabled selected hidden>
-			{label}
+			{selectedTitle}
 		</option>
 		{#if grouped}
 			{#each items as group}
@@ -97,19 +68,35 @@
 			{/each}
 		{/if}
 	</select>
-	<!-- <span class="focus"></span> -->
-	<div class='select-styled'
-			 on:click={()=>{active=!active}}
-			 class:active>
-		{selectedTitle()}
-	</div>
+	{#if !expanded}
+		<div class='select-styled'
+				 on:click={()=>{active=!active;}}
+				 class:active>
+			{selectedTitle}
+		</div>
+	{/if}
 	{#if active}
-		<ul class='select-options'>
-			{#each items as item}
-				<li on:click={()=>{active=false}}>
-					{item.title}
-				</li>
-			{/each}
+		<ul class='select-options' class:expanded class:dropdown>
+			{#if !grouped}
+				{#each items as item}
+					<li class='option' on:click={()=>{select(item)}}
+							class:selected={item.selected}>
+						{item.title}
+					</li>
+				{/each}
+			{:else}
+				{#each items as group}
+					<li class='groupTitle'>
+						{group.title}
+					</li>
+					{#each group.items as subItem}
+						<li class='option' on:click={()=>{select(subItem)}}
+							class:selected={subItem.selected}>
+							{subItem.title}
+						</li>
+					{/each}
+				{/each}
+			{/if}
 		</ul>
 	{/if}
 </div>
