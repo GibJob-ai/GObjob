@@ -1,4 +1,5 @@
 <script>
+  import ClickOutside from 'svelte-click-outside';
 	export let items;
 	// ACCEPTED ITEMS FORMATS:
 	// -----FLAT:
@@ -15,6 +16,8 @@
 	const grouped = items[0].hasOwnProperty('items');
 	
 	let selectedTitle = label;
+
+	let selectWrapperEle; // element binding for click outside
 
 	const select = (item) => {
 		selected = item.id;
@@ -44,7 +47,7 @@
 </script>
 <style src='select_box.scss'>
 </style>
-<div class='select' class:expanded class:dropdown>
+<div class='select' class:expanded class:dropdown bind:this={selectWrapperEle}>
 	<select bind:value={selected}
 					class="select-hidden">
 		<option value="" disabled selected hidden>
@@ -76,27 +79,31 @@
 		</div>
 	{/if}
 	{#if active}
-		<ul class='select-options' class:expanded class:dropdown>
-			{#if !grouped}
-				{#each items as item}
-					<li class='option' on:click={()=>{select(item)}}
-							class:selected={item.selected}>
-						{item.title}
-					</li>
-				{/each}
-			{:else}
-				{#each items as group}
-					<li class='groupTitle'>
-						{group.title}
-					</li>
-					{#each group.items as subItem}
-						<li class='option' on:click={()=>{select(subItem)}}
-							class:selected={subItem.selected}>
-							{subItem.title}
+		<!-- Close the dropdown when you click outside it (I would use on:focusout but it didnt work for some reason) -->
+		<!-- We have to exclude the select element itself because it appears outside of the dropdown content -->
+		<ClickOutside on:clickoutside={()=>{active=expanded?true:false}} exclude={[selectWrapperEle]}>
+			<ul class='select-options' class:expanded class:dropdown>
+				{#if !grouped}
+					{#each items as item}
+						<li class='option' on:click={()=>{select(item)}}
+								class:selected={item.selected}>
+							{item.title}
 						</li>
 					{/each}
-				{/each}
-			{/if}
-		</ul>
+				{:else}
+					{#each items as group}
+						<li class='groupTitle'>
+							{group.title}
+						</li>
+						{#each group.items as subItem}
+							<li class='option' on:click={()=>{select(subItem)}}
+								class:selected={subItem.selected}>
+								{subItem.title}
+							</li>
+						{/each}
+					{/each}
+				{/if}
+			</ul>
+		</ClickOutside>
 	{/if}
 </div>
