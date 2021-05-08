@@ -13,14 +13,17 @@ $ cp config.example.hcl config.hcl
 
 Then change the variables to whats needed
 
-## Run
+## Run app locally
+* TODO: Once docker-compose is working for local development / testing, put command here
 
-run `go run main.go`
+## Run backend (must have built frontend locally, see frontend/README.md)
+```bash
+cd backend
+go run main.go
+```
 
-### Run in prod
-
-To run for prod, set `Mode="prod"` inside `config.hcl`
-then run `sudo go run main.go`
+### Deploying to Prod
+We currently deploy through CI only. This is triggered by merging a PR into the `prod` branch.
 
 ## Graphql 
 

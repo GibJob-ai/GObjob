@@ -5,9 +5,9 @@
 	// graphql stuff
 	import { initClient, query, operationStore } from "@urql/svelte";
 
-	const prodGraphqlURL = `https://${window.location.host}/graphql`;
-	const devGraphqlURL = `http://localhost:3000/graphql`;
-	const url = process.env.NODE_ENV==='production'?prodGraphqlURL:devGraphqlURL;
+	console.log(`protocol: ${window.location.protocol}`);
+	const url = `${window.location.protocol}//${window.location.host}/graphql`;
+	console.log(`url: ${url}`);
 
 	initClient({
 			url: url
