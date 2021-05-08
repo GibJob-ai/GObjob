@@ -3,10 +3,14 @@
 	import { routes } from "../.routify/routes"; // this is a build time import
 
 	// graphql stuff
-	import { initClient, query, operationStore } from "@urql/svelte"
+	import { initClient, query, operationStore } from "@urql/svelte";
+
+	const prodGraphqlURL = `https://${window.location.host}/graphql`;
+	const devGraphqlURL = `http://localhost:3000/graphql`;
+	const url = process.env.NODE_ENV==='production'?prodGraphqlURL:devGraphqlURL;
 
 	initClient({
-			url: 'http://localhost:3000/graphql'
+			url: url
 	})
 
 	const test = operationStore(`

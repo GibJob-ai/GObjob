@@ -1,7 +1,10 @@
 <script>
 	import LabeledTextInput from '../labeled_text_input/labeled_text_input.svelte';
 	import {email} from '../../../../store/register.js';
-	let inputs = [{'name':'Username', 'val': ''},{'name':'Email', 'val': $email},{'name':'Password', 'val': ''}];
+	let username = '';
+	let password = '';
+	let email_ = `${$email}`; // copy val
+	let inputs = [{'name':'Username', 'val': username},{'name':'Email', 'val': email_},{'name':'Password', 'val': password}];
 	email.set(''); // null out the store after taking the value so that if they reload the page they start over
 	let form;
 
@@ -10,27 +13,27 @@
 
 	const signupMutation = mutation({
 			query: `
-			mutation($email: String!, $password: String!, $firstName: String!, $lastName: String!){
+			mutation($email: String!, $password: String!, $username: String!){
 				signUp(
 					email: $email,
 					password: $password,
-					firstName: $firstName,
-					lastName: $lastName
+					username: $username
 				){
-					ok,
-					error,
+					id,
+					email,
+					createdAt,
+					updatedAt
 				}
 			}
 		`,
 	});
 
-	const signUp = mutation(signupMutation);
+	// const signUp = mutation(signupMutation);
 	const submit = () => {
 		signupMutation({
-			email: "test10@test.com",
-			password: "test",
-			firstName: "test",
-			lastName: "test"
+			email: email_,
+			password: password,
+			username: username,
 		}).then(result => {
 			if(result.data){
 				console.log(result.data);

@@ -1,0 +1,13 @@
+version: "3.3"
+
+# TODO: update this docker-compose to work for local development by depending on a db service
+
+services:
+  gobjob:
+    build:
+      context: "."
+      dockerfile: "./Dockerfile"
+    ports:
+      - 8000:8000
+    # depends_on:
+      # - "cloudsql-proxy"
