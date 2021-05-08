@@ -16,54 +16,62 @@ All the main code is loaded into main.go and ran from there.
 
 `<folder name>/<file name>` for a file within a folder
 
-### `main.go`
-
-The main server file. All the code is loaded and run from here.
-
-### `config.example.hcl`
-
-The example config that should be copied and name changed to `config.hcl`
-
-### `config.hcl`
-
-The config file to configure the server settings
-
 ### `<folder name>/<folder name>.go`
 
 This is typically the main file of the package `<folder name>`.
 
-### `db/`
+### `config/`
 
-The connection to the database. 
+The config files, currently WIP (needs to be integrated with secret management stuff for CI purposes)
+
+### `config/config.example.hcl`
+
+The example config that should be copied and name changed to `config.hcl`
+
+### `config/config.hcl`
+
+The config file to configure the server settings
 
 ### `frontend/`
 
 This is the place that we put the entire frontend. This has its own `README.md` and other documentation. Check those if needed.
 
-### `model/`
+### `backend/`
+
+All the backend code lives here.
+
+### `backend/main.go`
+
+The main server file. All the code is loaded and run from here.
+
+### `backend/db/`
+
+The connection to the database. 
+
+### `backend/model/`
 
 This is the place where the models are placed.
 
-### `migrations/`
+### `backend/migrations/`
 
 Migrations directory, one go script for each new database revision.
 
-### `resolvers/`
+### `backend/resolvers/`
 
 This is the place where the graphql resolvers live.
 
-### `schema/`
+### `backend/schema/`
 
 This is the place where the graphql schema lives.
 
-### `utils/`
+### `backend/utils/`
 
 This is the place where utility functions live. 
 
-### `handler/`
+### `backend/handler/`
 
 This is the place for route handlers.
 
-### `config/`
+### `backend/config/`
 
 This is the place that reads the config
