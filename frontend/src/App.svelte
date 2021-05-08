@@ -3,10 +3,14 @@
 	import { routes } from "../.routify/routes"; // this is a build time import
 
 	// graphql stuff
-	import { initClient, query, operationStore } from "@urql/svelte"
+	import { initClient, query, operationStore } from "@urql/svelte";
+
+	console.log(`protocol: ${window.location.protocol}`);
+	const url = `${window.location.protocol}//${window.location.host}/graphql`;
+	console.log(`url: ${url}`);
 
 	initClient({
-			url: 'http://localhost:3000/graphql'
+			url: url
 	})
 
 	const test = operationStore(`

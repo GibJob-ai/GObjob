@@ -42,4 +42,3 @@ Hot reloading like above, but with a generic error/success sound so that you kno
 ## Architecture
 
 This can be read at `ARCHITECTURE.md`
-

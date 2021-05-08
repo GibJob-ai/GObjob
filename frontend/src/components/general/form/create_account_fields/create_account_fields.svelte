@@ -1,26 +1,33 @@
 <script>
 	import LabeledTextInput from '../labeled_text_input/labeled_text_input.svelte';
 	import {email} from '../../../../store/register.js';
-	let username = '';
-	let password = '';
-	let email_ = `${$email}`; // copy val
-	let inputs = [{'name':'Username', 'val': username},{'name':'Email', 'val': email_},{'name':'Password', 'val': password}];
+	let inputs = [{'name':'Username', 'val': ''},{'name':'Email', 'val': `${$email}`},{'name':'Password', 'val': ''}];
 	email.set(''); // null out the store after taking the value so that if they reload the page they start over
 	let form;
+
+	const getInputVal = (inputName) => {
+		for (const i of inputs) {
+			if (i.name === inputName){
+				return i.val;
+			}
+		};
+	}
 
 	import { mutation } from '@urql/svelte';
 
 
 	const signupMutation = mutation({
 			query: `
-			mutation($email: String!, $password: String!, username: String!){
+			mutation($email: String!, $password: String!, $username: String!){
 				signUp(
 					email: $email,
 					password: $password,
 					username: $username
 				){
-					ok,
-					error,
+					id,
+					email,
+					createdAt,
+					updatedAt
 				}
 			}
 		`,
@@ -29,9 +36,9 @@
 	// const signUp = mutation(signupMutation);
 	const submit = () => {
 		signupMutation({
-			email: email_,
-			password: password,
-			username: username,
+			email: getInputVal('Email'),
+			password: getInputVal('Password'),
+			username: getInputVal('Username'),
 		}).then(result => {
 			if(result.data){
 				console.log(result.data);
