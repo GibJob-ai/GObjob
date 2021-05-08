@@ -1,17 +1,21 @@
 package server
 
 import (
+	"context"
 	"log"
+	"net/http"
 
 	// "github.com/gin-gonic/autotls"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 
-	"github.com/GibJob-ai/GObjob/cmd"
+	graphql "github.com/graph-gophers/graphql-go"
+
 	"github.com/GibJob-ai/GObjob/config"
 	"github.com/GibJob-ai/GObjob/db"
-	"github.com/GibJob-ai/GObjob/migrations"
-	"github.com/GibJob-ai/GObjob/server"
+	"github.com/GibJob-ai/GObjob/handler"
+	"github.com/GibJob-ai/GObjob/resolvers"
+	"github.com/GibJob-ai/GObjob/schema"
 )
 
 func Serve(db *db.DB) {
@@ -62,3 +66,4 @@ func Serve(db *db.DB) {
 		log.Fatal(router.Run(":" + config.CONFIG.Port))
 	}
 			/*autotls.Run(router, "gibjob.com")*/
+}
