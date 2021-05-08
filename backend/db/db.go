@@ -19,19 +19,6 @@ type DB struct {
 
 // ConnectDB : connecting DB
 func ConnectDB() (*DB, error) {
-
-	// unix socket connection to cloud sql proxy
-	// if config.CONFIG.Mode == "prod"{
-		// dboptions := fmt.Sprintf(
-			// "host=%s user=%s dbname=%s password=%s sslmode=%s",
-			// config.CONFIG.DB.Host,
-			// config.CONFIG.DB.User,
-			// config.CONFIG.DB.DBName,
-			// config.CONFIG.DB.Password,
-			// config.CONFIG.DB.SSLMode,
-		// )
-	// }
-	// local database for dev and test modes
 	dboptions := fmt.Sprintf(
 		"host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
 		config.CONFIG.DB.Host,
