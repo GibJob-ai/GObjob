@@ -17,7 +17,7 @@ func Authenticate(h http.Handler) http.Handler {
 		ctx := r.Context()
 		userID, err := validateAuthHeader(ctx, r)
 		if err != nil {
-			// should do something here
+			// should do throw/log err here
 		}
 
 		if userID != nil {
