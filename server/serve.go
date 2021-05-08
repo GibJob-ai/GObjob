@@ -1,17 +1,21 @@
 package server
 
 import (
+	"context"
 	"log"
+	"net/http"
 
-	// "github.com/gin-gonic/autotls"
+	"github.com/gin-gonic/autotls"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 
-	"github.com/GibJob-ai/GObjob/cmd"
+	graphql "github.com/graph-gophers/graphql-go"
+	// "github.com/GibJob-ai/GObjob/utils"
 	"github.com/GibJob-ai/GObjob/config"
 	"github.com/GibJob-ai/GObjob/db"
-	"github.com/GibJob-ai/GObjob/migrations"
-	"github.com/GibJob-ai/GObjob/server"
+	"github.com/GibJob-ai/GObjob/handler"
+	"github.com/GibJob-ai/GObjob/resolvers"
+	"github.com/GibJob-ai/GObjob/schema"
 )
 
 func Serve(db *db.DB) {
@@ -31,11 +35,11 @@ func Serve(db *db.DB) {
 	//////////////////
 
 	// Serve frontend static files
-	router.Use(static.Serve("/", static.LocalFile("../frontend/public", true)))
+	router.Use(static.Serve("/", static.LocalFile("./frontend/public", true)))
 
 	// if no route then serve the root file
 	router.NoRoute(func(c *gin.Context) {
-		c.File("../frontend/public/index.html")
+		c.File("./frontend/public/index.html")
 	})
 
 	// graphql routes and route handling
@@ -59,6 +63,6 @@ func Serve(db *db.DB) {
 	if gin.Mode() == gin.DebugMode {
 		log.Fatal(router.Run(":" + config.CONFIG.Port))
 	} else if gin.Mode() == gin.ReleaseMode {
-		log.Fatal(router.Run(":" + config.CONFIG.Port))
+		log.Fatal(autotls.Run(router, "gibjob.engineer"))
 	}
-			/*autotls.Run(router, "gibjob.com")*/
+}
