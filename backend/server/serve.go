@@ -57,6 +57,8 @@ func Serve(db *db.DB) {
 				"message": "pong",
 			})
 		})
+
+		api.POST("/upload-file", handler.SaveFile)
 	}
 
 	// Start and run the server depending on mode

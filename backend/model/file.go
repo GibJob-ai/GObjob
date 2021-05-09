@@ -1,5 +1,7 @@
 package model
 
+import "github.com/google/uuid"
+
 var supportedFiletypes = []string{"pdf", "png", "jpeg"}                       // possibly svg later for custom icon upload
 var documentTypes = []string{"resume_pdf", "resume_thumb", "profile_picture"} // possibly svg later for custom icon upload
 
@@ -16,5 +18,20 @@ type File struct {
 
 	Name string `gorm:"not null;` // eg. 'my resume 123'
 
-	UserID uint // foreign key
+	UserID uuid.UUID // foreign key
 }
+
+// FileType TODO add enums to File
+type FileType int
+const (
+	pdf FileType = iota
+	png
+	jpeg
+)
+
+type DocumentType int
+// This can probably be broken up even more/should probably have resume uploads/pfp uploads separated
+const(
+	resume_pdf DocumentType = iota
+	profile_picture
+)
